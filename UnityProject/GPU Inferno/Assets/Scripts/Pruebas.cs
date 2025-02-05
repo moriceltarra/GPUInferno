@@ -5,8 +5,8 @@ using UnityEngine;
 public class Pruebas : MonoBehaviour
 {
     private float deltaTime = 0.0f;
-    int retraso=0;
-    public GameObject fantasma;
+    int delay=0;
+    public int sumDelay=6000;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +19,11 @@ public class Pruebas : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-           retraso+=100;
-           Instantiate(fantasma, new Vector3(0, 0, 0), Quaternion.identity);
+           delay+=sumDelay;
+            GameObject obj = new GameObject("TempObject");
+            Destroy(obj);
         }
-        for(int i=0; i<retraso; i++)
+        for(int i=0; i<delay; i++)
         {
             Debug.Log("Prueba");
         }

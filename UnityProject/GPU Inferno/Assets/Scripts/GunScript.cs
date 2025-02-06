@@ -5,8 +5,8 @@ using UnityEngine;
 public class GunScript : MonoBehaviour
 {
     public Transform player;       // Referencia al jugador
-    public Vector3 offset;         // Desplazamiento del arma con respecto al jugador
-    public Vector3 alternatePosition; // Posición alternativa cuando apunta a la izquierda
+    public Transform rightHandPosition; // Posición de la pistola en la mano derecha
+    public Transform  leftHandPosition;  // Posición de la pistola en la mano izquierda
     private bool isLeftHand = false; // Para verificar si está mirando a la izquierda
     [SerializeField] private float _gunFireCD = .1f;
     [SerializeField] private GameObject _bulletPrefab;
@@ -60,8 +60,8 @@ public class GunScript : MonoBehaviour
             // Si el mouse está a la izquierda del jugador, apuntar a la izquierda
             if (!isLeftHand)
             {
-                transform.position = player.position + alternatePosition; // Cambia la posición
-                transform.localScale = new Vector3(4.32f, -4.32f, 1f); // Invertir la pistola
+                transform.position = rightHandPosition.position; // Cambia la posición
+                transform.localScale = new Vector3(13f, -13f, 13f); // Invertir la pistola
                 isLeftHand = true; // Establecer que está mirando a la izquierda
             }
         }
@@ -70,8 +70,8 @@ public class GunScript : MonoBehaviour
             // Si el mouse está a la derecha del jugador, apuntar a la derecha
             if (isLeftHand)
             {
-                transform.position = player.position + offset; // Posición normal
-                transform.localScale = new Vector3(4.32f, 4.32f, 1f); // Restablecer la pistola
+                transform.position = leftHandPosition.position; // Posición normal
+                transform.localScale = new Vector3(13f, 13f, 13f); // Restablecer la pistola
                 isLeftHand = false; // Establecer que no está mirando a la izquierda
             }
         }

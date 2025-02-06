@@ -10,7 +10,7 @@ public class VirusMovement : MonoBehaviour
     NavMeshAgent agent; // Componente NavMeshAgent
 
     void Start() {
-        target = GameObject.Find("Capsule").transform;
+        target = GameObject.Find("GraphicCard").transform;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;

@@ -28,6 +28,8 @@ public class Pruebas : MonoBehaviour
             Debug.Log("Prueba");
         }
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+        
+        
     }
      void OnGUI()
     {

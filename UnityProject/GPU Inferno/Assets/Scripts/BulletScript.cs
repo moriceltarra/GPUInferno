@@ -22,4 +22,7 @@ public class BulletScript : MonoBehaviour
         // Mover la bala hacia la dirección del ratón
         transform.Translate(direction * speed * Time.deltaTime);
     }
+    
+   
+    
 }

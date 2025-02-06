@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7119230380415221129}
   - component: {fileID: 1445576473547318258}
   - component: {fileID: 5731862404857834288}
-  - component: {fileID: 6035549010383871321}
   - component: {fileID: 7787179972878391096}
   - component: {fileID: -4576183571723054281}
-  m_Layer: 0
+  - component: {fileID: -111168284595269819}
+  m_Layer: 6
   m_Name: CryptoEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,20 +109,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6035549010383871321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549244601991844095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35ae7ae0c92798440b78696b24729b2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 5
 --- !u!58 &7787179972878391096
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -152,7 +138,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -180,3 +166,18 @@ NavMeshAgent:
   m_BaseOffset: 0.16
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-111168284595269819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549244601991844095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2523954a927d84cba7648d1d6ad98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 5
+  life: 4

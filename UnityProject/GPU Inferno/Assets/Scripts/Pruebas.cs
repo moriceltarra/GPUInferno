@@ -7,36 +7,70 @@ public class Pruebas : MonoBehaviour
     private float deltaTime = 0.0f;
     int delay=0;
     public int sumDelay=6000;
-
-    // Start is called before the first frame update
+    bool firstTime=true;
+    public Font customFont; // Asigna la fuente desde el Inspector
     void Start()
     {
-        
+        Application.targetFrameRate = 1000; // Puedes poner un valor alto o -1 para ilimitado
+        QualitySettings.vSyncCount = 0; // Desactiva la sincronización vertical (VSync)
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        
+            for (int i = 0; i < delay; i++)
         {
-           delay+=sumDelay;
-            GameObject obj = new GameObject("TempObject");
-            Destroy(obj);
+            float x = Mathf.Sqrt(i) * Mathf.Sin(i) * Mathf.Cos(i); // Operaciones matemáticas inútiles
         }
-        for(int i=0; i<delay; i++)
+
+    // Crear muchos objetos en la escena (Carga en GPU)
+        for (int i = 0; i < delay / 100; i++)
         {
-            Debug.Log("Prueba");
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.position = new Vector3(-1000, -1000, -1000);
+            cube.AddComponent<Rigidbody>(); // Añadir física también ayuda a consumir CPU
+            Destroy(cube, 0.5f);
         }
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
-        
-        
     }
-     void OnGUI()
+    public void downFPS(){
+        delay+=1000;
+    }
+    void pause(){
+        Debug.Break();
+    }
+    void OnGUI()
     {
         float fps = 1.0f / deltaTime;
+
         GUIStyle style = new GUIStyle();
-        style.fontSize = 30;
-        style.normal.textColor = Color.white;
-        GUI.Label(new Rect(10, 10, 150, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
+        style.fontSize = 60;
+        style.font = customFont;
+
+        float startChange = 60f; // FPS donde empieza a cambiar el color
+        float endChange = 30f;   // FPS donde ya es completamente rojo
+
+        // Normaliza el valor de FPS entre 1 y 0, asegurando que en 30 FPS ya es rojo
+        float t = Mathf.InverseLerp(endChange, startChange, fps);
+
+        // Mezcla de colores de verde a rojo
+        style.normal.textColor = Color.Lerp(Color.red, Color.green, t);
+
+        GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
+
+        if (fps > 30)
+        {
+            firstTime = false;
+        }
+
+        if (fps < 30 && !firstTime)
+        {
+            // Mostrar mensaje de derrota en rojo
+            GUIStyle loseStyle = new GUIStyle(style);
+            loseStyle.normal.textColor = Color.red;
+            GUI.Label(new Rect(10, 60, 300, 50), "You Lose", loseStyle);
+            pause();
+        }
     }
+
+
 }

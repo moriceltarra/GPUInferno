@@ -159,7 +159,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.47413826, y: 0.10941601}
@@ -356,8 +356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8532489978342282302}
-  offset: {x: 0.43, y: -0.12, z: -1}
-  alternatePosition: {x: -0.43, y: -0.12, z: -1}
+  rightHandPosition: {fileID: 0}
+  leftHandPosition: {fileID: 0}
   _gunFireCD: 0.1
   _bulletPrefab: {fileID: 0}
   _bulletSpawnPoint: {fileID: 1331681917541577588}

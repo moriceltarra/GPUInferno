@@ -6,6 +6,8 @@ public class Pruebas : MonoBehaviour
 {
     private float deltaTime = 0.0f;
     int delay=0;
+    public int delayCPU=0;
+    public int delayGPU=0;
     public int sumDelay=6000;
     bool firstTime=true;
     public Font customFont; // Asigna la fuente desde el Inspector
@@ -17,13 +19,13 @@ public class Pruebas : MonoBehaviour
     void Update()
     {
         
-            for (int i = 0; i < delay; i++)
+            for (int i = 0; i < delayCPU; i++)
         {
             float x = Mathf.Sqrt(i) * Mathf.Sin(i) * Mathf.Cos(i); // Operaciones matemáticas inútiles
         }
 
     // Crear muchos objetos en la escena (Carga en GPU)
-        for (int i = 0; i < delay / 100; i++)
+        for (int i = 0; i < delayGPU / 100; i++)
         {
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.transform.position = new Vector3(-1000, -1000, -1000);
@@ -32,8 +34,13 @@ public class Pruebas : MonoBehaviour
         }
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
-    public void downFPS(){
-        delay+=1000;
+    public void CPUdelay(){
+        Debug.Log("FPS down");
+        CPUdelay+=1000;
+    }
+    public void GPUdelay(){
+        Debug.Log("FPS down");
+        GPUdelay+=1000;
     }
     void pause(){
         Debug.Break();
@@ -46,7 +53,7 @@ public class Pruebas : MonoBehaviour
         style.fontSize = 60;
         style.font = customFont;
 
-        float startChange = 60f; // FPS donde empieza a cambiar el color
+        float startChange = 300f; // FPS donde empieza a cambiar el color
         float endChange = 30f;   // FPS donde ya es completamente rojo
 
         // Normaliza el valor de FPS entre 1 y 0, asegurando que en 30 FPS ya es rojo

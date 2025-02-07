@@ -31,7 +31,6 @@ public class EnemyScript : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Colision");
        if(other.tag == "Bullet") {
            Destroy(other.gameObject);
            downLife();

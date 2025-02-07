@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-        public float speed = 10f;  // Velocidad de la bala
+        public float speed = 60f;  // Velocidad de la bala
     private Vector2 direction; // Dirección en la que se mueve la bala
+    public float maxDistance = 10f; // Distancia máxima antes de destruirse
+    private Vector3 startPosition;
 
     void Start()
     {
         // Obtener la posición del ratón en el mundo
+        startPosition = transform.position;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;  // Asegurarse de que está en 2D
 
@@ -21,6 +24,10 @@ public class BulletScript : MonoBehaviour
     {
         // Mover la bala hacia la dirección del ratón
         transform.Translate(direction * speed * Time.deltaTime);
+        if (Vector3.Distance(startPosition, transform.position) >= maxDistance)
+        {
+            Destroy(gameObject);
+        }
     }
     
    

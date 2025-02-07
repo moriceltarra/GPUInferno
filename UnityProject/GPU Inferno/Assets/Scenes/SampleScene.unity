@@ -2362,7 +2362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350393134370418032, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: _gunFireCD
-      value: 0.4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 350393134370418032, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: _bulletPrefab
@@ -2408,9 +2408,17 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4811089573214526968, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: slowSpeedMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8206069908873269870, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227482260679087228, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8532489978342282302, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8549244601991844095
+--- !u!1 &6173997943187987892
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7119230380415221129}
-  - component: {fileID: 1445576473547318258}
-  - component: {fileID: 5731862404857834288}
-  - component: {fileID: 7787179972878391096}
-  - component: {fileID: -4576183571723054281}
-  - component: {fileID: -111168284595269819}
-  m_Layer: 6
-  m_Name: CryptoEnemy
-  m_TagString: Untagged
+  - component: {fileID: 2185123487272827434}
+  - component: {fileID: 2871446372261289969}
+  - component: {fileID: 1482671041948039911}
+  - component: {fileID: 4138873302281720639}
+  - component: {fileID: -768597086031063117}
+  - component: {fileID: -717840026550489319}
+  m_Layer: 0
+  m_Name: ChromeShuriken
+  m_TagString: Virus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7119230380415221129
+--- !u!4 &2185123487272827434
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549244601991844095}
+  m_GameObject: {fileID: 6173997943187987892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.05312, y: -2.5416207, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: -3.25, y: -2.3647985, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1445576473547318258
+--- !u!212 &2871446372261289969
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549244601991844095}
+  m_GameObject: {fileID: 6173997943187987892}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,45 +77,36 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 645672708, guid: a090291835e226f4cad7a7274c5c764d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e7eed50877d40d4b9fb2c36948e7d8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5731862404857834288
-Animator:
-  serializedVersion: 5
+--- !u!114 &1482671041948039911
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549244601991844095}
+  m_GameObject: {fileID: 6173997943187987892}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2753fb28629f96b4eb7a3271953fba93, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!58 &7787179972878391096
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5e727e4c6430d43929ffb3c9dc80d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &4138873302281720639
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549244601991844095}
+  m_GameObject: {fileID: 6173997943187987892}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -143,17 +134,33 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.16
---- !u!195 &-4576183571723054281
+  m_Radius: 2.56
+--- !u!114 &-768597086031063117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173997943187987892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2523954a927d84cba7648d1d6ad98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 5
+  enemyType: 0
+  life: 6
+--- !u!195 &-717840026550489319
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549244601991844095}
+  m_GameObject: {fileID: 6173997943187987892}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.16
+  m_Radius: 2.56
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -162,23 +169,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.32
-  m_BaseOffset: 0.16
+  m_Height: 5.12
+  m_BaseOffset: 2.56
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-111168284595269819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549244601991844095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2523954a927d84cba7648d1d6ad98d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 5
-  enemyType: 1
-  life: 8

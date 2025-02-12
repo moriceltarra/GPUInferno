@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             Vector2 spawnPosition = (Vector2)player.position + Random.insideUnitCircle.normalized * spawnRadius;
-            int random = Random.Range(0, 2);
+            int random = Random.Range(0, 3);
             Instantiate(enemies[random], spawnPosition, Quaternion.identity);
         }
     }

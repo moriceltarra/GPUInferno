@@ -180,4 +180,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 5
-  life: 2
+  enemyType: 0
+  life: 4

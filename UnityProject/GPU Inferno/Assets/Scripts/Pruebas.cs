@@ -13,12 +13,12 @@ public class Pruebas : MonoBehaviour
     public Font customFont; // Asigna la fuente desde el Inspector
     void Start()
     {
-        Application.targetFrameRate = 1000; // Puedes poner un valor alto o -1 para ilimitado
+        Application.targetFrameRate = 500; // Puedes poner un valor alto o -1 para ilimitado
         QualitySettings.vSyncCount = 0; // Desactiva la sincronización vertical (VSync)
     }
     void Update()
     {
-        
+        Debug.Log("Tarjeta gráfica: " + SystemInfo.graphicsDeviceName);
             for (int i = 0; i < delayCPU; i++)
         {
             float x = Mathf.Sqrt(i) * Mathf.Sin(i) * Mathf.Cos(i); // Operaciones matemáticas inútiles
@@ -36,11 +36,11 @@ public class Pruebas : MonoBehaviour
     }
     public void CPUdelay(){
         Debug.Log("FPS down");
-        CPUdelay+=1000;
+        delayCPU+=1000;
     }
     public void GPUdelay(){
         Debug.Log("FPS down");
-        GPUdelay+=1000;
+        delayGPU+=1000;
     }
     void pause(){
         Debug.Break();
@@ -64,12 +64,12 @@ public class Pruebas : MonoBehaviour
 
         GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
 
-        if (fps > 30)
+        if (fps > 15)
         {
             firstTime = false;
         }
 
-        if (fps < 30 && !firstTime)
+        if (fps < 15 && !firstTime)
         {
             // Mostrar mensaje de derrota en rojo
             GUIStyle loseStyle = new GUIStyle(style);

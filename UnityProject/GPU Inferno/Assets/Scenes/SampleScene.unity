@@ -1253,6 +1253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 710847741}
   - component: {fileID: 710847740}
+  - component: {fileID: 710847742}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1278,6 +1279,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 2600113774282847097, guid: ac0714d728003fc47b2275658369bbca, type: 3}
   - {fileID: 8549244601991844095, guid: 7e390d3ed185c254582a9dc6adaf2944, type: 3}
+  - {fileID: 6173997943187987892, guid: c145b0de2939af74bba221192d03b9b3, type: 3}
 --- !u!4 &710847741
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,6 +1295,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &710847742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710847739}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d02945521432c945aefd3aee03a9fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorFrames:
+  - {fileID: 21300000, guid: 8d9462baaa54b4a4f93aff0af60bd5b1, type: 3}
+  - {fileID: 21300000, guid: 14183f0a1f2442941803a49098a19491, type: 3}
+  - {fileID: 21300000, guid: 2f4e0980776901c48866453c512b0c26, type: 3}
+  - {fileID: 21300000, guid: 6018eca9e727a1048ae3d3c7a1600338, type: 3}
+  - {fileID: 21300000, guid: ae6cc51652e96d449b593e4d2f5287a7, type: 3}
+  - {fileID: 21300000, guid: 0c513f4aa98d6d14f9faf41ea7f57a7d, type: 3}
+  frameRate: 0.1
 --- !u!1 &718203962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,6 +2100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509df7e7c9f612841bee334d3aa81d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayCPU: 0
+  delayGPU: 0
   sumDelay: 2000
   customFont: {fileID: 12800000, guid: d997cf2423634f24491eee3a3e867080, type: 3}
 --- !u!4 &1628211492
@@ -2410,7 +2434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4811089573214526968, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: slowSpeedMultiplier
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8206069908873269870, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_SortingOrder

@@ -14,9 +14,9 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target.position.x <= -38.11999 || target.position.x >= 37.54374)
+        if (target.position.x <= -32.76171 || target.position.x >= 31.92365)
         {
-            if (target.position.y <= -41.28207 || target.position.y >= 41.28207)
+            if (target.position.y <= -38.07449 || target.position.y >= 38.59428)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             }
@@ -25,9 +25,9 @@ public class CameraScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z);
             }
         }
-        else if (target.position.y <= -41.28207 || target.position.y >= 41.28207)
+        else if (target.position.y <= -38.07449 || target.position.y >= 38.59428)
         {
-            if (target.position.x <= -38.11999 || target.position.x >= 37.54374)
+            if (target.position.x <= -32.76171 || target.position.x >= 31.92365)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             }

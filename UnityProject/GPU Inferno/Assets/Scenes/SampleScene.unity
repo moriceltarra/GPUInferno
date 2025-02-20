@@ -1308,12 +1308,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorFrames:
-  - {fileID: 2800000, guid: 8d9462baaa54b4a4f93aff0af60bd5b1, type: 3}
-  - {fileID: 2800000, guid: 14183f0a1f2442941803a49098a19491, type: 3}
-  - {fileID: 2800000, guid: 2f4e0980776901c48866453c512b0c26, type: 3}
-  - {fileID: 2800000, guid: 6018eca9e727a1048ae3d3c7a1600338, type: 3}
-  - {fileID: 2800000, guid: ae6cc51652e96d449b593e4d2f5287a7, type: 3}
-  - {fileID: 2800000, guid: 0c513f4aa98d6d14f9faf41ea7f57a7d, type: 3}
+  - {fileID: 2800000, guid: 6e3684f531ba5e640bb23e1d201aeb30, type: 3}
+  - {fileID: 2800000, guid: 99422eb9c07670649a71cd8516acd179, type: 3}
+  - {fileID: 2800000, guid: 98abf7d0b2ffa03439232f1b340e06b9, type: 3}
+  - {fileID: 2800000, guid: c8f48becc9a9a1f45bb801ade9d0d20d, type: 3}
+  - {fileID: 2800000, guid: 0567a6217d0e33d41a37655a84b628cc, type: 3}
+  - {fileID: 2800000, guid: 3069564f8d1b9c84aa296b545d52ece5, type: 3}
   frameRate: 0.1
 --- !u!1 &718203962
 GameObject:

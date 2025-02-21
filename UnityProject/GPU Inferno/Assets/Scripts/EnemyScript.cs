@@ -17,13 +17,16 @@ public class EnemyScript : MonoBehaviour
     NavMeshAgent agent; // Componente NavMeshAgent
     public EnemyType enemyType;
     [SerializeField] int life = 1;
+    private Animator animator;
+    private CircleCollider2D collider;
 
     void Start() {
-        
+        collider = GetComponent<CircleCollider2D>();
         target = GameObject.Find("GraphicCard").transform;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,10 +36,18 @@ public class EnemyScript : MonoBehaviour
             agent.SetDestination(target.position);
             agent.speed = speed;       
         }
-        if (life <= 0)
+        if (life == 0)
         {
-            Destroy(gameObject);
+            speed = 0;
+            collider.enabled = false;
+            animator.Play("Death");
+            Invoke("DestroyEnemy", 0.5f);
         }
+    }
+    public void DestroyEnemy()
+    {
+        
+        Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other) {
        if(other.tag == "Bullet") {

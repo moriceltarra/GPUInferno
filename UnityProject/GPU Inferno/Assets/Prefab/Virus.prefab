@@ -181,4 +181,4 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 5
   enemyType: 0
-  life: 4
+  life: 1

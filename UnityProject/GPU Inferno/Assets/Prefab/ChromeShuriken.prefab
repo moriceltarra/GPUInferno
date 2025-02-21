@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4138873302281720639}
   - component: {fileID: -768597086031063117}
   - component: {fileID: -717840026550489319}
+  - component: {fileID: -7706767400811992859}
   m_Layer: 0
   m_Name: ChromeShuriken
   m_TagString: Virus
@@ -150,7 +151,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 5
   enemyType: 0
-  life: 6
+  life: 3
 --- !u!195 &-717840026550489319
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -173,3 +174,24 @@ NavMeshAgent:
   m_BaseOffset: 2.56
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &-7706767400811992859
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173997943187987892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bec6c54e1c0d74940950f6a89e039f03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

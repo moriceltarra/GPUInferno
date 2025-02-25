@@ -9,6 +9,9 @@ public class GraphicMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    public Transform bottomLeft;  // Esquina inferior izquierda del cuadrado
+    public Transform topRight;    // Esquina superior derecha del cuadrado
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,7 +38,15 @@ public class GraphicMovement : MonoBehaviour
             speed *= slowSpeedMultiplier;
         }
 
-        rb.velocity = movement * speed;
+        // Calcular la nueva posición
+        Vector2 newPosition = rb.position + movement * speed * Time.fixedDeltaTime;
+
+        // Limitar la posición dentro del cuadrado
+        newPosition.x = Mathf.Clamp(newPosition.x, bottomLeft.position.x, topRight.position.x);
+        newPosition.y = Mathf.Clamp(newPosition.y, bottomLeft.position.y, topRight.position.y);
+
+        // Aplicar la nueva posición
+        rb.MovePosition(newPosition);
     }
 
 }

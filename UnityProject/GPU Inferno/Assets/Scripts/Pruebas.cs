@@ -18,7 +18,7 @@ public class Pruebas : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("Tarjeta gráfica: " + SystemInfo.graphicsDeviceName);
+        //Debug.Log("Tarjeta gráfica: " + SystemInfo.graphicsDeviceName);
             for (int i = 0; i < delayCPU; i++)
         {
             float x = Mathf.Sqrt(i) * Mathf.Sin(i) * Mathf.Cos(i); // Operaciones matemáticas inútiles

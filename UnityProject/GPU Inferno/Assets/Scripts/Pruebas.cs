@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class Pruebas : MonoBehaviour
 {
-    private float deltaTime = 0.0f;
-    int delay=0;
-    public int delayCPU=0;
-    public int delayGPU=0;
-    public int sumDelay=6000;
-    bool firstTime=true;
+      private float deltaTime = 0.0f;
+    int delay = 0;
+    public int delayCPU = 0;
+    public int delayGPU = 0;
+    public int sumDelay = 6000;
+    bool firstTime = true;
     public Font customFont; // Asigna la fuente desde el Inspector
+
     void Start()
     {
         Application.targetFrameRate = 500; // Puedes poner un valor alto o -1 para ilimitado
         QualitySettings.vSyncCount = 0; // Desactiva la sincronización vertical (VSync)
     }
+
     void Update()
     {
-        //Debug.Log("Tarjeta gráfica: " + SystemInfo.graphicsDeviceName);
-            for (int i = 0; i < delayCPU; i++)
+        // Debug.Log("Tarjeta gráfica: " + SystemInfo.graphicsDeviceName);
+        for (int i = 0; i < delayCPU; i++)
         {
             float x = Mathf.Sqrt(i) * Mathf.Sin(i) * Mathf.Cos(i); // Operaciones matemáticas inútiles
         }
 
-    // Crear muchos objetos en la escena (Carga en GPU)
+        // Crear muchos objetos en la escena (Carga en GPU)
         for (int i = 0; i < delayGPU / 100; i++)
         {
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -34,17 +36,24 @@ public class Pruebas : MonoBehaviour
         }
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
-    public void CPUdelay(){
+
+    public void CPUdelay()
+    {
         Debug.Log("FPS down");
-        delayCPU+=1000;
+        delayCPU += 1000;
     }
-    public void GPUdelay(){
+
+    public void GPUdelay()
+    {
         Debug.Log("FPS down");
-        delayGPU+=1000;
+        delayGPU += 1000;
     }
-    void pause(){
+
+    void pause()
+    {
         Debug.Break();
     }
+
     void OnGUI()
     {
         float fps = 1.0f / deltaTime;
@@ -77,7 +86,16 @@ public class Pruebas : MonoBehaviour
             GUI.Label(new Rect(10, 60, 300, 50), "You Lose", loseStyle);
             pause();
         }
-    }
 
+        // Mostrar el número de procesos de delay en la esquina superior derecha
+        GUIStyle delayStyle = new GUIStyle();
+        delayStyle.fontSize = 40; // Tamaño de fuente más pequeño
+        delayStyle.font = customFont;
+        delayStyle.normal.textColor = Color.white; // Color blanco para el texto
+
+        // Muestra el número de procesos de delay
+        GUI.Label(new Rect(Screen.width - 700, 10, 300, 50),
+                  "CPU Processors: " + (int)(delayCPU*1.3237) + "\nGPU polygons: " + (int)(delayGPU*1.13545), delayStyle);
+    }
 
 }

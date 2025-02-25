@@ -36,7 +36,7 @@ public class EnemyScript : MonoBehaviour
             agent.SetDestination(target.position);
             agent.speed = speed;       
         }
-        if (life == 0)
+        if (life <= 0)
         {
             speed = 0;
             collider.enabled = false;
@@ -57,11 +57,15 @@ public class EnemyScript : MonoBehaviour
        if(other.name == "GraphicCard") {
         if(enemyType == EnemyType.CPU){
             GameObject.Find("Prueba").GetComponent<Pruebas>().CPUdelay();
+            animator.Play("Death");
+            Invoke("DestroyEnemy", 0.5f);
         }
         if(enemyType == EnemyType.GPU){
             GameObject.Find("Prueba").GetComponent<Pruebas>().GPUdelay();
+            animator.Play("Death");
+            Invoke("DestroyEnemy", 0.5f);
         }
-            Destroy(gameObject);
+            
        } 
     }
     public void downLife()

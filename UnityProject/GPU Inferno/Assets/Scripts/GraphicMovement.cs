@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,5 +59,9 @@ public class GraphicMovement : MonoBehaviour
     {
         Debug.Log("Cambio de color");
         this.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+    public void ActivatedGun(String name){
+        Debug.Log("Arma activada: " + name);
+        FindAnyObject(name).SetActive(true);
     }
 }

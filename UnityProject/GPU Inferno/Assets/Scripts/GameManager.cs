@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-     public Transform player; // Referencia al jugador
+    public Transform player; // Referencia al jugador
     public float spawnRadius = 10f; // Radio en el que aparecerán los enemigos
-    public float spawnInterval = 2f; // Tiempo entre spawns
+    public float[] spawnIntervals = {2f, 1.5f, 1f, 0.75f, 0.5f}; // Intervalos de spawn en diferentes minutos
     public GameObject[] enemies; // [0] = Virus, [1] = Cryptocoins, [2] = Chrome Shurikens
 
     public Transform bottomLeft;  // Esquina inferior izquierda del área permitida
@@ -14,15 +14,24 @@ public class GameManager : MonoBehaviour
 
     private float elapsedTime = 0f; // Tiempo transcurrido en segundos
     private int maxEnemyIndex = 0; // Índice máximo de enemigos disponibles para spawn
+    private int currentIntervalIndex = 0; // Índice actual del intervalo de spawn
 
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+        InvokeRepeating("SpawnEnemy", 0f, spawnIntervals[currentIntervalIndex]);
     }
 
     void Update()
     {
         elapsedTime += Time.deltaTime;
+        int newIntervalIndex = Mathf.Min((int)(elapsedTime / 60), spawnIntervals.Length - 1);
+
+        if (newIntervalIndex > currentIntervalIndex)
+        {
+            currentIntervalIndex = newIntervalIndex;
+            CancelInvoke("SpawnEnemy");
+            InvokeRepeating("SpawnEnemy", 0f, spawnIntervals[currentIntervalIndex]);
+        }
 
         // A los 60 segundos, desbloqueamos Cryptocoins
         if (elapsedTime >= 60f && maxEnemyIndex < 1)

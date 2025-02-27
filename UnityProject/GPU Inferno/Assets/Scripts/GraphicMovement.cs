@@ -48,5 +48,15 @@ public class GraphicMovement : MonoBehaviour
         // Aplicar la nueva posición
         rb.MovePosition(newPosition);
     }
-
+    public void downLife()
+    {
+        this.GetComponent<SpriteRenderer>().color = Color.red;
+        Invoke("resetcolor", 0.1f);
+        Debug.Log("Vida -1");
+    }
+    private void resetcolor()
+    {
+        Debug.Log("Cambio de color");
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+    }
 }

@@ -59,11 +59,15 @@ public class EnemyScript : MonoBehaviour
             GameObject.Find("Prueba").GetComponent<Pruebas>().CPUdelay();
             animator.Play("Death");
             Invoke("DestroyEnemy", 0.5f);
+            //cambia color de la tarjeta
+            GameObject.Find("GraphicCard").GetComponent<GraphicMovement>().downLife();
         }
         if(enemyType == EnemyType.GPU){
             GameObject.Find("Prueba").GetComponent<Pruebas>().GPUdelay();
             animator.Play("Death");
             Invoke("DestroyEnemy", 0.5f);
+            //cambia color de la tarjeta
+            GameObject.Find("GraphicCard").GetComponent<GraphicMovement>().downLife();
         }
             
        } 

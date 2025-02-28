@@ -36,13 +36,13 @@ public class GameManager : MonoBehaviour
         }
 
         // A los 60 segundos, desbloqueamos Cryptocoins
-        if (elapsedTime >= 25f && maxEnemyIndex < 1)
+        if (elapsedTime >= 30f && maxEnemyIndex < 1)
         {
             maxEnemyIndex = 1;
         }
 
         // A los 180 segundos (3 minutos), desbloqueamos Chrome Shurikens
-        if (elapsedTime >= 180f && maxEnemyIndex < 2)
+        if (elapsedTime >= 60f && maxEnemyIndex < 2)
         {
             maxEnemyIndex = 2;
         }

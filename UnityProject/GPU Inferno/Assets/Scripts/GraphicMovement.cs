@@ -53,17 +53,15 @@ public class GraphicMovement : MonoBehaviour
     public void downLife()
     {
         this.GetComponent<SpriteRenderer>().color = Color.red;
-        Invoke("resetcolor", 0.1f);
-        Debug.Log("Vida -1");
+        Invoke("resetcolor", 0.3f);
     }
     private void resetcolor()
     {
-        Debug.Log("Cambio de color");
         this.GetComponent<SpriteRenderer>().color = Color.white;
     }
     public void ActivatedGun(String name){
         Debug.Log("Arma desactivada: " + name);
-        if(gunLvL>2){
+        if(gunLvL>=2){
             transform.Find("GunLvL"+(gunLvL-1)).gameObject.SetActive(false);
         }
         name=name.Replace("(Clone)","");

@@ -62,6 +62,6 @@ public class GraphicMovement : MonoBehaviour
     }
     public void ActivatedGun(String name){
         Debug.Log("Arma activada: " + name);
-        FindAnyObject(name).SetActive(true);
+        transform.Find("Gun"+name).gameObject.SetActive(true);
     }
 }

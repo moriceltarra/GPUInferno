@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public Transform player;       // Referencia al jugador
+     public Transform player;       // Referencia al jugador
     public Transform rightHandPosition; // Posición de la pistola en la mano derecha
-    public Transform  leftHandPosition;  // Posición de la pistola en la mano izquierda
+    public Transform leftHandPosition;  // Posición de la pistola en la mano izquierda
     private bool isLeftHand = false; // Para verificar si está mirando a la izquierda
     [SerializeField] private float _gunFireCD = .1f;
     [SerializeField] private GameObject _bulletPrefab;
     private float _lastFireTime = 0f;
     public Transform _bulletSpawnPoint;
     Vector3 mousePos;
+
+    private LineRenderer lineRenderer;
+
+    void Start()
+    {
+        // Agregar LineRenderer si no está en el objeto
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
+
+        // Configurar propiedades del LineRenderer
+        lineRenderer.startWidth = 0.05f;
+        lineRenderer.endWidth = 0.01f;
+        lineRenderer.material = new Material(Shader.Find("Sprites/Default")); // Material transparente
+        lineRenderer.startColor = new Color(1f, 0f, 0f, 0.5f); // Rojo semi-transparente
+        lineRenderer.endColor = new Color(1f, 0f, 0f, 0f);    // Se desvanece
+        lineRenderer.positionCount = 2; // Dos puntos (inicio y fin)
+    }
 
     void Update()
     {
@@ -38,8 +54,6 @@ public class GunScript : MonoBehaviour
 
         // Obtener la dirección en la que apunta la pistola
         Vector2 direction = (mousePos - _bulletSpawnPoint.position).normalized;
-
-        
     }
 
     void RotateGun()
@@ -57,26 +71,30 @@ public class GunScript : MonoBehaviour
         // Decidir si el mouse está a la izquierda o a la derecha del jugador
         if (mousePos.x < player.position.x)
         {
-            // Si el mouse está a la izquierda del jugador, apuntar a la izquierda
             if (!isLeftHand)
             {
-                transform.position = rightHandPosition.position; // Cambia la posición
-                transform.localScale = new Vector3(13f, -13f, 13f); // Invertir la pistola
-                isLeftHand = true; // Establecer que está mirando a la izquierda
+                transform.position = rightHandPosition.position; 
+                transform.localScale = new Vector3(13f, -13f, 13f); 
+                isLeftHand = true;
             }
         }
         else
         {
-            // Si el mouse está a la derecha del jugador, apuntar a la derecha
             if (isLeftHand)
             {
-                transform.position = leftHandPosition.position; // Posición normal
-                transform.localScale = new Vector3(13f, 13f, 13f); // Restablecer la pistola
-                isLeftHand = false; // Establecer que no está mirando a la izquierda
+                transform.position = leftHandPosition.position; 
+                transform.localScale = new Vector3(13f, 13f, 13f);
+                isLeftHand = false;
             }
         }
 
         // Aplicar la rotación de la pistola
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        // Dibujar la línea apuntando
+        Vector3 startPos = _bulletSpawnPoint.position;
+        Vector3 endPos = startPos + direction * 5f; // 5 unidades de longitud
+        lineRenderer.SetPosition(0, startPos);
+        lineRenderer.SetPosition(1, endPos);
     }
 }

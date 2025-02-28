@@ -12,6 +12,8 @@ public enum EnemyType
 }
 public class EnemyScript : MonoBehaviour
 {
+    private bool canDropWeapon = true;
+    public GameObject WeaponToDrop;
     public Transform target; // El objetivo al que se moverá el personaje
     public float speed = 5f; // Velocidad de movimiento
     NavMeshAgent agent; // Componente NavMeshAgent
@@ -44,9 +46,19 @@ public class EnemyScript : MonoBehaviour
             Invoke("DestroyEnemy", 0.5f);
         }
     }
+    //Metodo Para asignarle El objeto que suelta si esque lo suelta
+    public void SetWeaponToDrop(GameObject weapon)
+    {
+        WeaponToDrop = weapon;
+    }
+
     public void DestroyEnemy()
     {
-        
+        if (WeaponToDrop != null && canDropWeapon)
+        {
+            canDropWeapon=false;
+            Instantiate(WeaponToDrop, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other) {

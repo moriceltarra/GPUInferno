@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GraphicMovement : MonoBehaviour
 {
+    int gunLvL=1;
    public float moveSpeed = 5f;  // Velocidad normal
     public float slowSpeedMultiplier = 0.5f; // Reducción de velocidad al esquivar
     private Rigidbody2D rb;
@@ -61,7 +62,13 @@ public class GraphicMovement : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = Color.white;
     }
     public void ActivatedGun(String name){
+        Debug.Log("Arma desactivada: " + name);
+        if(gunLvL>2){
+            transform.Find("GunLvL"+(gunLvL-1)).gameObject.SetActive(false);
+        }
+        name=name.Replace("(Clone)","");
         Debug.Log("Arma activada: " + name);
         transform.Find("Gun"+name).gameObject.SetActive(true);
+        gunLvL++;
     }
 }

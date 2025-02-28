@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject[] Weapons;
+    private int gunLvL = 0;
     public Transform player; // Referencia al jugador
-    public float spawnRadius = 10f; // Radio en el que aparecerán los enemigos
+    public float spawnRadius = 0.5f; // Radio en el que aparecerán los enemigos
     public float[] spawnIntervals = {2f, 1.5f, 1f, 0.75f, 0.5f}; // Intervalos de spawn en diferentes minutos
     public GameObject[] enemies; // [0] = Virus, [1] = Cryptocoins, [2] = Chrome Shurikens
 
     public Transform bottomLeft;  // Esquina inferior izquierda del área permitida
     public Transform topRight;    // Esquina superior derecha del área permitida
-
+    public int[] probabilityOfDrop; // Probabilidad de que un enemigo suelte un arma
     private float elapsedTime = 0f; // Tiempo transcurrido en segundos
     private int maxEnemyIndex = 0; // Índice máximo de enemigos disponibles para spawn
     private int currentIntervalIndex = 0; // Índice actual del intervalo de spawn
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
         }
 
         // A los 60 segundos, desbloqueamos Cryptocoins
-        if (elapsedTime >= 60f && maxEnemyIndex < 1)
+        if (elapsedTime >= 25f && maxEnemyIndex < 1)
         {
             maxEnemyIndex = 1;
         }
@@ -68,15 +70,41 @@ public class GameManager : MonoBehaviour
             if (attempts > 0) // Solo instancia si encontró una posición válida
             {
                 int random = Random.Range(0, maxEnemyIndex + 1); // Solo selecciona enemigos desbloqueados
-                Instantiate(enemies[random], spawnPosition, Quaternion.identity);
+                GameObject enemy= Instantiate(enemies[random], spawnPosition, Quaternion.identity);
+                Debug.Log("Enemy: " + enemy.name+" "+gunLvL+ " "+GetObjectIndex(enemies, enemy));
+                if(gunLvL==GetObjectIndex(enemies, enemy)){
+                    if (Random.Range(0, 100) < probabilityOfDrop[gunLvL])
+                    {
+                        Debug.Log("Se va a dropear un arma");
+                        AddWeapon(enemy);
+                    }
+                }              
             }
         }
     }
-
+    void AddWeapon(GameObject enemy){
+        enemy.GetComponent<EnemyScript>().SetWeaponToDrop(Weapons[gunLvL]);
+        Debug.Log("Drop Arma");
+        gunLvL++;
+    }
     bool IsValidSpawnPosition(Vector2 position)
     {
         // Comprobamos si la posición está dentro del área permitida
         return position.x >= bottomLeft.position.x && position.x <= topRight.position.x &&
                position.y >= bottomLeft.position.y && position.y <= topRight.position.y;
     }
+    //Para saber el nivel del objeto en el array
+    int GetObjectIndex(GameObject[] array, GameObject target)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            Debug.Log(array[i].gameObject+" "+target.gameObject.name.Replace("(Clone)",""));
+            if (array[i].gameObject.name == target.gameObject.name.Replace("(Clone)","")) // Compara referencias
+            {
+                return i; // Devuelve el índice si lo encuentra
+            }
+        }
+        return -1; // Devuelve -1 si no está en el array
+    }
+
 }

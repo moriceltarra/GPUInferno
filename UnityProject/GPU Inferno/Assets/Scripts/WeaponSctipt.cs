@@ -17,6 +17,7 @@ public class WeaponSctipt : MonoBehaviour
     void Start()
     {
         initialScale = transform.localScale; // Guarda la escala inicial
+        fallOff = light.falloffIntensity; // Guarda la intensidad inicial de la luz
     }
 
     void Update()
@@ -29,7 +30,9 @@ public class WeaponSctipt : MonoBehaviour
         if (collision.gameObject.name == "GraphicCard")
         {
             collision.gameObject.GetComponent<GraphicMovement>().ActivatedGun(gameObject.name);
+            Destroy(gameObject);
         }
+       
     }
 
     void ChangeLightFallOff()

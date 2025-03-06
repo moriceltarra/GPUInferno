@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Virus
   - Bullet
+  - Coin
   layers:
   - Default
   - TransparentFX

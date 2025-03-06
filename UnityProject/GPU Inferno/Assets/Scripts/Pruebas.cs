@@ -94,7 +94,7 @@ public class Pruebas : MonoBehaviour
         delayStyle.normal.textColor = Color.white; // Color blanco para el texto
 
         // Muestra el número de procesos de delay
-        GUI.Label(new Rect(Screen.width - 700, 10, 300, 50),
+        GUI.Label(new Rect(10, Screen.height-20 - 60, 300, 50),
                   "CPU Processors: " + (int)(delayCPU*1.3237) + "\nGPU polygons: " + (int)(delayGPU*1.13545), delayStyle);
     }
 

@@ -62,10 +62,18 @@ public class EnemyScript : MonoBehaviour
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other) {
-       if(other.tag == "Bullet") {
-           Destroy(other.gameObject);
-           downLife();
-       }
+       if (other.CompareTag("Bullet")) 
+    {
+        if (other.name != "LaserRay")
+        {
+            Destroy(other.gameObject);
+            downLife();
+        }
+        else
+        {
+            StartCoroutine(DamageOverTime(0.2f));
+        }
+    }
        if(other.name == "GraphicCard") {
         if(enemyType == EnemyType.CPU){
             GameObject.Find("Prueba").GetComponent<Pruebas>().CPUdelay();
@@ -83,6 +91,21 @@ public class EnemyScript : MonoBehaviour
         }
             
        } 
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.name == "LaserRay" )
+        {
+            StopCoroutine(DamageOverTime(0f));
+        }
+    }
+    IEnumerator DamageOverTime(float interval)
+    {
+        while (true) 
+        {
+            downLife();
+            yield return new WaitForSeconds(interval);
+        }
     }
     public void downLife()
     {

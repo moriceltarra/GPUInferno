@@ -178,7 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2523954a927d84cba7648d1d6ad98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponToDrop: {fileID: 0}
   target: {fileID: 0}
   speed: 5
   enemyType: 0
-  life: 1
+  life: 2

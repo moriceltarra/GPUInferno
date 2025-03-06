@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
+    public GameObject LaserPrefab; // Prefab del láser
      public Transform player;       // Referencia al jugador
     public Transform rightHandPosition; // Posición de la pistola en la mano derecha
     public Transform leftHandPosition;  // Posición de la pistola en la mano izquierda
@@ -15,6 +16,8 @@ public class GunScript : MonoBehaviour
     Vector3 mousePos;
 
     private LineRenderer lineRenderer;
+    public bool isRayGun = false;
+    private float originalScale;
 
     void Start()
     {
@@ -28,13 +31,28 @@ public class GunScript : MonoBehaviour
         lineRenderer.startColor = new Color(1f, 0f, 0f, 0.5f); // Rojo semi-transparente
         lineRenderer.endColor = new Color(1f, 0f, 0f, 0f);    // Se desvanece
         lineRenderer.positionCount = 2; // Dos puntos (inicio y fin)
+        originalScale = transform.localScale.x;
     }
 
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RotateGun();
-        Shoot();
+        if (isRayGun)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                LaserPrefab.SetActive(true);
+            }
+            if(Input.GetMouseButtonUp(0))
+            {
+                LaserPrefab.SetActive(false);
+            }
+        }
+        else{
+            Shoot();
+        }
+        
     }
 
     void Shoot()
@@ -74,7 +92,7 @@ public class GunScript : MonoBehaviour
             if (!isLeftHand)
             {
                 transform.position = rightHandPosition.position; 
-                transform.localScale = new Vector3(13f, -13f, 13f); 
+                transform.localScale = new Vector3(originalScale, -originalScale, originalScale); 
                 isLeftHand = true;
             }
         }
@@ -83,7 +101,7 @@ public class GunScript : MonoBehaviour
             if (isLeftHand)
             {
                 transform.position = leftHandPosition.position; 
-                transform.localScale = new Vector3(13f, 13f, 13f);
+                transform.localScale = new Vector3(originalScale, originalScale, originalScale);
                 isLeftHand = false;
             }
         }

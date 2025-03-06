@@ -21,7 +21,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] int life = 1;
     private Animator animator;
     private CircleCollider2D collider;
-
+    private AudioSource audioSource;
     void Start() {
         collider = GetComponent<CircleCollider2D>();
         target = GameObject.Find("GraphicCard").transform;
@@ -29,6 +29,7 @@ public class EnemyScript : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -104,6 +105,7 @@ public class EnemyScript : MonoBehaviour
         while (true) 
         {
             downLife();
+            audioSource.Play();
             yield return new WaitForSeconds(interval);
         }
     }

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public float spawnRadius = 0.5f; // Radio en el que aparecerán los enemigos
     public float[] spawnIntervals = {2f, 1.5f, 1f, 0.75f, 0.5f}; // Intervalos de spawn en diferentes minutos
     public GameObject[] enemies; // [0] = Virus, [1] = Cryptocoins, [2] = Chrome Shurikens
-
+    public GameObject CoinDrop; // Moneda que suelta el enemigo
     public Transform bottomLeft;  // Esquina inferior izquierda del área permitida
     public Transform topRight;    // Esquina superior derecha del área permitida
     public int[] probabilityOfDrop; // Probabilidad de que un enemigo suelte un arma
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
             {
                 int random = Random.Range(0, maxEnemyIndex + 1); // Solo selecciona enemigos desbloqueados
                 GameObject enemy= Instantiate(enemies[random], spawnPosition, Quaternion.identity);
+                enemy.GetComponent<EnemyScript>().SetWeaponToDrop(CoinDrop);
                 Debug.Log("Enemy: " + enemy.name+" "+gunLvL+ " "+GetObjectIndex(enemies, enemy));
                 if(gunLvL==GetObjectIndex(enemies, enemy)){
                     if (Random.Range(0, 100) < probabilityOfDrop[gunLvL])

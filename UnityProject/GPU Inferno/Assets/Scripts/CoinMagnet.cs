@@ -26,8 +26,9 @@ public class CoinMagnet : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        if(othe){
-
+        if(other.gameObject.tag == "Player"){
+            other.gameObject.GetComponent<LevelScript>().PickCoin();
+            Destroy(gameObject);
         }
     }
 }

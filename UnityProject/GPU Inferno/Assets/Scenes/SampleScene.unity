@@ -381,7 +381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1783514940, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -658,7 +658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -102818491, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -102818491, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1444927540, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   CoinDrop: {fileID: 6755496570474921330, guid: 4917990792b441948b4f51c8738d3490, type: 3}
   bottomLeft: {fileID: 2062736787}
   topRight: {fileID: 1828388395}
-  probabilityOfDrop: 320000003200000032000000
+  probabilityOfDrop: 030000003200000032000000
 --- !u!4 &710847741
 Transform:
   m_ObjectHideFlags: 0
@@ -1980,7 +1980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1783514940, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2111,7 +2111,7 @@ GameObject:
   - component: {fileID: 866474848}
   - component: {fileID: 866474847}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LvLText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2133,7 +2133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -22, y: -66}
+  m_AnchoredPosition: {x: -22, y: -75.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866474847
@@ -2158,8 +2158,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LVL 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0d3041fcfb18f9249a3a06ba2d44f7a7, type: 2}
+  m_sharedMaterial: {fileID: 8111274347559327649, guid: 0d3041fcfb18f9249a3a06ba2d44f7a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1783514940, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3157,7 +3157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -102818491, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3232,7 +3232,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1783514940, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3307,7 +3307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1444927540, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
+  m_Sprite: {fileID: 2031634346, guid: 869a5e084fbf947478d72569043fafb2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3670,6 +3670,10 @@ PrefabInstance:
       propertyPath: bottomLeft
       value: 
       objectReference: {fileID: 2062736787}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 866474847}
     - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: levelImages.Array.data[0]
       value: 

@@ -10,7 +10,7 @@ public class GraphicMovement : MonoBehaviour
     public float slowSpeedMultiplier = 0.5f; // Reducción de velocidad al esquivar
     private Rigidbody2D rb;
     private Vector2 movement;
-
+    public GameObject arrow;
     public Transform bottomLeft;  // Esquina inferior izquierda del cuadrado
     public Transform topRight;    // Esquina superior derecha del cuadrado
 
@@ -68,5 +68,9 @@ public class GraphicMovement : MonoBehaviour
         Debug.Log("Arma activada: " + name);
         transform.Find("Gun"+name).gameObject.SetActive(true);
         gunLvL++;
+    }
+    //Para darle la flecha al weapon que señala
+    public GameObject getArrow(){
+        return arrow;
     }
 }

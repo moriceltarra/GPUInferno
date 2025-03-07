@@ -29,6 +29,8 @@ public class WeaponSctipt : MonoBehaviour
     {
         if (collision.gameObject.name == "GraphicCard")
         {
+            GameObject.Find("GameManager").GetComponent<GameManager>().canDrop=true;
+            collision.gameObject.GetComponent<GraphicMovement>().getArrow().SetActive(false);
             collision.gameObject.GetComponent<GraphicMovement>().ActivatedGun(gameObject.name);
             Destroy(gameObject);
         }

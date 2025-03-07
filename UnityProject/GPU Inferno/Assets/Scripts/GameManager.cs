@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private int gunLvL = 0;
     public Transform player; // Referencia al jugador
     public float spawnRadius = 0.5f; // Radio en el que aparecerán los enemigos
-    public float[] spawnIntervals = {2f, 1.5f, 1f, 0.75f, 0.5f}; // Intervalos de spawn en diferentes minutos
+    public float[] spawnIntervals = { 2f, 1.5f, 1f, 0.75f, 0.5f }; // Intervalos de spawn en diferentes minutos
     public GameObject[] enemies; // [0] = Virus, [1] = Cryptocoins, [2] = Chrome Shurikens
     public GameObject CoinDrop; // Moneda que suelta el enemigo
     public Transform bottomLeft;  // Esquina inferior izquierda del área permitida
@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     private float elapsedTime = 0f; // Tiempo transcurrido en segundos
     private int maxEnemyIndex = 0; // Índice máximo de enemigos disponibles para spawn
     private int currentIntervalIndex = 0; // Índice actual del intervalo de spawn
+    //para saber si se puede dropear un arma
+    public bool canDrop = false;
+    private bool firstTime = true;
 
     void Start()
     {
@@ -70,20 +73,29 @@ public class GameManager : MonoBehaviour
             if (attempts > 0) // Solo instancia si encontró una posición válida
             {
                 int random = Random.Range(0, maxEnemyIndex + 1); // Solo selecciona enemigos desbloqueados
-                GameObject enemy= Instantiate(enemies[random], spawnPosition, Quaternion.identity);
+                GameObject enemy = Instantiate(enemies[random], spawnPosition, Quaternion.identity);
                 enemy.GetComponent<EnemyScript>().SetWeaponToDrop(CoinDrop);
-                Debug.Log("Enemy: " + enemy.name+" "+gunLvL+ " "+GetObjectIndex(enemies, enemy));
-                if(gunLvL==GetObjectIndex(enemies, enemy)){
-                    if (Random.Range(0, 100) < probabilityOfDrop[gunLvL])
+                Debug.Log("Enemy: " + enemy.name + " " + gunLvL + " " + GetObjectIndex(enemies, enemy));
+                //Si el enemigo es el mismo que el arma que le toca dropear
+                if (canDrop == true || firstTime == true)
+                {
+                    if (gunLvL == GetObjectIndex(enemies, enemy))
                     {
-                        Debug.Log("Se va a dropear un arma");
-                        AddWeapon(enemy);
+                        if (Random.Range(0, 100) < probabilityOfDrop[gunLvL])
+                        {
+                            canDrop = false;
+                            firstTime = false;
+                            Debug.Log("Se va a dropear un arma");
+                            AddWeapon(enemy);
+                        }
                     }
-                }              
+                }
+                         
             }
         }
     }
-    void AddWeapon(GameObject enemy){
+    void AddWeapon(GameObject enemy)
+    {
         enemy.GetComponent<EnemyScript>().SetWeaponToDrop(Weapons[gunLvL]);
         Debug.Log("Drop Arma");
         gunLvL++;
@@ -99,8 +111,8 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < array.Length; i++)
         {
-            Debug.Log(array[i].gameObject+" "+target.gameObject.name.Replace("(Clone)",""));
-            if (array[i].gameObject.name == target.gameObject.name.Replace("(Clone)","")) // Compara referencias
+            Debug.Log(array[i].gameObject + " " + target.gameObject.name.Replace("(Clone)", ""));
+            if (array[i].gameObject.name == target.gameObject.name.Replace("(Clone)", "")) // Compara referencias
             {
                 return i; // Devuelve el índice si lo encuentra
             }

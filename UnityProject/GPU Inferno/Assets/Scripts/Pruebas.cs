@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Pruebas : MonoBehaviour
 {
+    public Light2D light2D;
       private float deltaTime = 0.0f;
     int delay = 0;
     public int delayCPU = 0;
@@ -11,7 +13,8 @@ public class Pruebas : MonoBehaviour
     public int sumDelay = 6000;
     bool firstTime = true;
     public Font customFont; // Asigna la fuente desde el Inspector
-
+    bool isPause = false;
+    public GameObject PauseMenu;
     void Start()
     {
         Application.targetFrameRate = 500; // Puedes poner un valor alto o -1 para ilimitado
@@ -20,6 +23,22 @@ public class Pruebas : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(isPause)
+            {
+                Time.timeScale = 1f;
+                PauseMenu.SetActive(false);
+                isPause = false;
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                PauseMenu.SetActive(true);
+                isPause = true;
+            }
+           
+        }
         // Debug.Log("Tarjeta gráfica: " + SystemInfo.graphicsDeviceName);
         for (int i = 0; i < delayCPU; i++)
         {
@@ -51,13 +70,14 @@ public class Pruebas : MonoBehaviour
 
     void pause()
     {
-        Debug.Break();
+        Time.timeScale = 0f;
+        
     }
 
     void OnGUI()
     {
         float fps = 1.0f / deltaTime;
-
+        
         GUIStyle style = new GUIStyle();
         style.fontSize = 60;
         style.font = customFont;
@@ -67,25 +87,27 @@ public class Pruebas : MonoBehaviour
 
         // Normaliza el valor de FPS entre 1 y 0, asegurando que en 30 FPS ya es rojo
         float t = Mathf.InverseLerp(endChange, startChange, fps);
-
+        float t2 = Mathf.InverseLerp(30, 90, fps);
         // Mezcla de colores de verde a rojo
         style.normal.textColor = Color.Lerp(Color.red, Color.green, t);
-
-        GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
-
-        if (fps > 15)
+        light2D.color = Color.Lerp(Color.red, Color.white, t2);
+        if (fps > 30)
         {
             firstTime = false;
         }
 
-        if (fps < 15 && !firstTime)
+        if (fps < 30 && !firstTime)
         {
             // Mostrar mensaje de derrota en rojo
             GUIStyle loseStyle = new GUIStyle(style);
             loseStyle.normal.textColor = Color.red;
             GUI.Label(new Rect(10, 60, 300, 50), "You Lose", loseStyle);
             pause();
+            fps=30;
         }
+        GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
+        
+        
 
         // Mostrar el número de procesos de delay en la esquina superior derecha
         GUIStyle delayStyle = new GUIStyle();

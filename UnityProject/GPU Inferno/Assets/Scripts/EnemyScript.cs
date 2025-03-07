@@ -14,6 +14,7 @@ public class EnemyScript : MonoBehaviour
 {
     private bool canDropWeapon = true;
     public GameObject WeaponToDrop;
+    private GameObject player;
     public Transform target; // El objetivo al que se moverá el personaje
     public float speed = 5f; // Velocidad de movimiento
     NavMeshAgent agent; // Componente NavMeshAgent
@@ -24,7 +25,8 @@ public class EnemyScript : MonoBehaviour
     private AudioSource audioSource;
     void Start() {
         collider = GetComponent<CircleCollider2D>();
-        target = GameObject.Find("GraphicCard").transform;
+        player=GameObject.Find("GraphicCard");
+        target = player.transform;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -58,7 +60,12 @@ public class EnemyScript : MonoBehaviour
         if (WeaponToDrop != null && canDropWeapon)
         {
             canDropWeapon=false;
-            Instantiate(WeaponToDrop, transform.position, Quaternion.identity);
+            GameObject weapon= Instantiate(WeaponToDrop, transform.position, Quaternion.identity);
+            if (!weapon.CompareTag("Coin")){
+                GameObject arrow= player.GetComponent<GraphicMovement>().getArrow();
+                arrow.SetActive(true);
+                arrow.GetComponent<ArrowPointer>().ActivateArrow(weapon.transform);
+            }
         }
         Destroy(gameObject);
     }

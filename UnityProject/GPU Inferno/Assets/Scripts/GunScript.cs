@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunScript : MonoBehaviour
 {
     public GameObject LaserPrefab; // Prefab del láser
-     public Transform player;       // Referencia al jugador
+    public Transform player;       // Referencia al jugador
     public Transform rightHandPosition; // Posición de la pistola en la mano derecha
     public Transform leftHandPosition;  // Posición de la pistola en la mano izquierda
     private bool isLeftHand = false; // Para verificar si está mirando a la izquierda
@@ -18,6 +18,7 @@ public class GunScript : MonoBehaviour
     private LineRenderer lineRenderer;
     public bool isRayGun = false;
     private float originalScale;
+    private bool isPause;
 
     void Start()
     {
@@ -36,23 +37,39 @@ public class GunScript : MonoBehaviour
 
     void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RotateGun();
-        if (isRayGun)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetMouseButton(0))
+            if (isPause)
             {
-                LaserPrefab.SetActive(true);
+                isPause = false;
             }
-            if(Input.GetMouseButtonUp(0))
+            else
             {
-                LaserPrefab.SetActive(false);
+                isPause = true;
             }
         }
-        else{
-            Shoot();
+        if (isPause==false)
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RotateGun();
+            if (isRayGun)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    LaserPrefab.SetActive(true);
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    LaserPrefab.SetActive(false);
+                }
+            }
+            else
+            {
+                Shoot();
+            }
         }
-        
+
+
     }
 
     void Shoot()
@@ -91,8 +108,8 @@ public class GunScript : MonoBehaviour
         {
             if (!isLeftHand)
             {
-                transform.position = rightHandPosition.position; 
-                transform.localScale = new Vector3(originalScale, -originalScale, originalScale); 
+                transform.position = rightHandPosition.position;
+                transform.localScale = new Vector3(originalScale, -originalScale, originalScale);
                 isLeftHand = true;
             }
         }
@@ -100,7 +117,7 @@ public class GunScript : MonoBehaviour
         {
             if (isLeftHand)
             {
-                transform.position = leftHandPosition.position; 
+                transform.position = leftHandPosition.position;
                 transform.localScale = new Vector3(originalScale, originalScale, originalScale);
                 isLeftHand = false;
             }

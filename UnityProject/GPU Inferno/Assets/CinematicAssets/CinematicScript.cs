@@ -23,7 +23,7 @@ public class CinematicScript : MonoBehaviour
         StartCoroutine(Inicio());
     }
     private IEnumerator Inicio(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         StartCoroutine(SwitchAndMove());
     }
     private IEnumerator SwitchAndMove()
@@ -37,13 +37,13 @@ public class CinematicScript : MonoBehaviour
 
         // 3. Esperar 2 segundos
         barDownload.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.8f);
         //Tercera parte
         secondPart.SetActive(false);
         thirdPart.SetActive(true);
         //reutilizo el codigo de lo del cursor para mover la grafica 
         yield return StartCoroutine(MoveCursor(graphicCard, GraphicPoint.position));
-        
+         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(SpawnWarning());
         yield return new WaitForSeconds(1.5f);
         // 4. Desactivar SecondPart y volver a activar el objeto inicial
@@ -55,7 +55,7 @@ public class CinematicScript : MonoBehaviour
 
     private IEnumerator MoveCursor(GameObject cursor, Vector3 target)
     {
-        while (Vector3.Distance(cursor.transform.position, target) > 0.4f)
+        while (Vector3.Distance(cursor.transform.position, target) > 0.8f)
         {
             cursor.transform.position = Vector3.MoveTowards(cursor.transform.position, target, moveSpeed * Time.deltaTime);
             yield return null;
@@ -66,7 +66,7 @@ public class CinematicScript : MonoBehaviour
         l2d.color=new Color(1f, 0.1556604f, 0.1556604f);
         for(int i=0;i<VirusAdvice.Length;i++){
             VirusAdvice[i].SetActive(true);
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(1f);
         }
 
         yield return null;

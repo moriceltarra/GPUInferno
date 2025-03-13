@@ -17,13 +17,17 @@ public class CinematicScript : MonoBehaviour
     public GameObject graphicCard;
     public Transform GraphicPoint;
     public Light2D l2d;
+    public GameObject  Intro;
 
     void Start()
     {
         StartCoroutine(Inicio());
     }
     private IEnumerator Inicio(){
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
+        Intro.SetActive(false);
+        FirstPart.SetActive(true);
+        yield return new WaitForSeconds(2f);
         StartCoroutine(SwitchAndMove());
     }
     private IEnumerator SwitchAndMove()

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CinematicScript : MonoBehaviour
 {
+    public AudioSource audioWhistle;
     public GameObject[] VirusAdvice;
     public GameObject FirstPart; // Primer objeto activo
     public GameObject secondPart;    // Objeto que se activa después
@@ -18,6 +19,9 @@ public class CinematicScript : MonoBehaviour
     public Transform GraphicPoint;
     public Light2D l2d;
     public GameObject  Intro;
+    public GameObject click;
+    public GameObject noclick;
+    public AudioSource Warning;
 
     void Start()
     {
@@ -38,23 +42,28 @@ public class CinematicScript : MonoBehaviour
 
         // 2. Mover el objeto
         yield return StartCoroutine(MoveCursor(cursor, targetPosition.position));
-
+        click.SetActive(true);
+        noclick.SetActive(false);
         // 3. Esperar 2 segundos
         barDownload.SetActive(true);
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(3f);
+        audioWhistle.Stop();
         //Tercera parte
         secondPart.SetActive(false);
         thirdPart.SetActive(true);
         //reutilizo el codigo de lo del cursor para mover la grafica 
         yield return StartCoroutine(MoveCursor(graphicCard, GraphicPoint.position));
-         yield return new WaitForSeconds(1f);
+        
         yield return StartCoroutine(SpawnWarning());
         yield return new WaitForSeconds(1.5f);
         // 4. Desactivar SecondPart y volver a activar el objeto inicial
         thirdPart.SetActive(false);
         FirstPart.SetActive(true);
-        GameObject.Find("cinematicfreak").GetComponent<Animator>().SetTrigger("Angry");
-        
+        GameObject freak= GameObject.Find("cinematicfreak");
+        Warning.Play();
+        freak.GetComponent<Animator>().SetTrigger("Angry");
+        freak.GetComponent<AudioSource>().Stop();
+        FirstPart.GetComponent<AudioSource>().Play();
     }
 
     private IEnumerator MoveCursor(GameObject cursor, Vector3 target)

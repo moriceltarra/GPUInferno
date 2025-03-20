@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     //para saber si se puede dropear un arma
     public bool canDrop = false;
     private bool firstTime = true;
+    public GameObject[] advices; 
 
     void Start()
     {
@@ -42,12 +43,14 @@ public class GameManager : MonoBehaviour
         if (elapsedTime >= 30f && maxEnemyIndex < 1)
         {
             maxEnemyIndex = 1;
+            advices[1].SetActive(true);
         }
 
         // A los 180 segundos (3 minutos), desbloqueamos Chrome Shurikens
         if (elapsedTime >= 60f && maxEnemyIndex < 2)
         {
             maxEnemyIndex = 2;
+            advices[2].SetActive(true);
         }
     }
 

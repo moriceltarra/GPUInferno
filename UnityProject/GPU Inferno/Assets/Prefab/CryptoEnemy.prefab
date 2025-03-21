@@ -183,7 +183,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 5
   enemyType: 1
-  life: 4
+  life: 10
 --- !u!82 &-6276362112335994820
 AudioSource:
   m_ObjectHideFlags: 0

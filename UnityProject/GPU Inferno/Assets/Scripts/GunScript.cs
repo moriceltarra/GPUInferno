@@ -9,7 +9,7 @@ public class GunScript : MonoBehaviour
     public Transform rightHandPosition; // Posición de la pistola en la mano derecha
     public Transform leftHandPosition;  // Posición de la pistola en la mano izquierda
     private bool isLeftHand = false; // Para verificar si está mirando a la izquierda
-    [SerializeField] private float _gunFireCD = .1f;
+    [SerializeField] public float _gunFireCD = .1f;
     [SerializeField] private GameObject _bulletPrefab;
     private float _lastFireTime = 0f;
     public Transform _bulletSpawnPoint;
@@ -19,7 +19,9 @@ public class GunScript : MonoBehaviour
     public bool isRayGun = false;
     private float originalScale;
     private bool isPause;
-
+    public void levelUp(){
+        _gunFireCD=_gunFireCD-0.01f;
+    }
     void Start()
     {
         // Agregar LineRenderer si no está en el objeto

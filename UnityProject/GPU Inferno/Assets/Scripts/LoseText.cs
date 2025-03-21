@@ -13,7 +13,7 @@ public class LoseText : MonoBehaviour
     void Start()
     {
         string gpuName = SystemInfo.graphicsDeviceName;
-        fullText = "Your FPS have dropped too much… Your "+gpuName+" is done for";   // Guardamos el texto original
+        fullText = "Your FPS have dropped too much… Your "+gpuName+" is done.";   // Guardamos el texto original
         textComponent.text = "";         // Lo borramos para empezar de cero
         StartCoroutine(TypeText());      // Iniciamos la animación de escritura
     }

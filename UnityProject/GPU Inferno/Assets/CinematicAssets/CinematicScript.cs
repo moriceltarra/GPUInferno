@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class CinematicScript : MonoBehaviour
 {
@@ -23,6 +25,12 @@ public class CinematicScript : MonoBehaviour
     public GameObject noclick;
     public AudioSource Warning;
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)){
+            SceneManager.LoadScene("InitialMenu");
+        }
+    }
     void Start()
     {
         StartCoroutine(Inicio());
@@ -55,7 +63,7 @@ public class CinematicScript : MonoBehaviour
         yield return StartCoroutine(MoveCursor(graphicCard, GraphicPoint.position));
         
         yield return StartCoroutine(SpawnWarning());
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         // 4. Desactivar SecondPart y volver a activar el objeto inicial
         thirdPart.SetActive(false);
         FirstPart.SetActive(true);
@@ -64,6 +72,8 @@ public class CinematicScript : MonoBehaviour
         freak.GetComponent<Animator>().SetTrigger("Angry");
         freak.GetComponent<AudioSource>().Stop();
         FirstPart.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene("InitialMenu");
     }
 
     private IEnumerator MoveCursor(GameObject cursor, Vector3 target)

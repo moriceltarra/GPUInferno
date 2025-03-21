@@ -1,48 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class AnimatedCursor : MonoBehaviour
 {
-   public Texture2D[] cursorFrames; // Assign your cursor frames in the Inspector
+    public Texture2D[] cursorFrames; // Assign your cursor frames in the Inspector
     public float frameRate = 0.1f;  // Time between frames
+    public bool pause=false;
 
     private int currentFrame;
     private float timer;
 
     void Start()
     {
-        foreach (Texture2D cursorFrame in cursorFrames)
-        {
-            Texture2D texture= ResizeTexture(cursorFrame, 528, 538);
-        }
-        Cursor.SetCursor(cursorFrames[0], Vector2.zero, CursorMode.Auto); // Set initial cursor
+
+        Cursor.SetCursor(cursorFrames[0], new Vector2(16, 16), CursorMode.Auto); // Set initial cursor
+        StartCoroutine("changeCursor");
+    }
+    void Update()
+    {
+        if(pause){
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }   
     }
 
-   Texture2D ResizeTexture(Texture2D source, int width, int height)
+    private IEnumerator changeCursor()
     {
-        RenderTexture rt = RenderTexture.GetTemporary(width, height);
-        Graphics.Blit(source, rt);
-        RenderTexture.active = rt;
-        
-        Texture2D result = new Texture2D(width, height);
-        result.ReadPixels(new Rect(0, 0, width, height), 0, 0);
-        result.Apply();
-
-        RenderTexture.active = null;
-        RenderTexture.ReleaseTemporary(rt);
-        
-        return result;
-    }    void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer >= frameRate)
+        while (true)
         {
-            timer -= frameRate;
-
-            // Update the cursor frame
-            currentFrame = (currentFrame + 1) % cursorFrames.Length;
-            Cursor.SetCursor(cursorFrames[currentFrame], Vector2.zero, CursorMode.Auto);
+            for (int i = 0; i < cursorFrames.Length; i++)
+            {
+                if(!pause){
+                    Cursor.SetCursor(cursorFrames[i], new Vector2(100, 100), CursorMode.Auto);
+                }else{
+                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                    Debug.Log("cursor");
+                }
+                yield return new WaitForSeconds(frameRate); 
+            }
         }
+    }
+    public void setPause(bool isPause){
+        pause=isPause;
     }
 }

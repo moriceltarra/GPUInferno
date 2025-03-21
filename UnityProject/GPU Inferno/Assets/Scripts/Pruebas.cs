@@ -18,6 +18,7 @@ public class Pruebas : MonoBehaviour
     public GameObject PauseMenu;
     public GameObject lose;
     public GameObject graphic;
+    public AnimatedCursor animatedCursor;
     
     void Start()
     {
@@ -31,15 +32,19 @@ public class Pruebas : MonoBehaviour
         {
             if (isPause)
             {
+                animatedCursor.setPause(false);
                 Time.timeScale = 1f;
                 PauseMenu.SetActive(false);
                 isPause = false;
+                
             }
             else
             {
+                animatedCursor.setPause(true);
                 Time.timeScale = 0f;
                 PauseMenu.SetActive(true);
                 isPause = true;
+                
             }
 
         }
@@ -110,6 +115,7 @@ public class Pruebas : MonoBehaviour
                 GUI.Label(new Rect(10, 60, 300, 50), "You Lose", loseStyle);
                 graphic.SetActive(false);
                 lose.SetActive(true);
+                animatedCursor.setPause(true);
                 GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(30).ToString() + " FPS", style);
             }else{
                  GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
@@ -131,7 +137,7 @@ public class Pruebas : MonoBehaviour
 
     }
     public void returnMenu(){
-        SceneManager.LoadScene("CinematicIntro");
+        SceneManager.LoadScene("InitialMenu");
 
 
     }

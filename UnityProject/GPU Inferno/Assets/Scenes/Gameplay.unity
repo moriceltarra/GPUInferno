@@ -533,7 +533,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 189331713}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7480756413265625066}
+        m_TargetAssemblyTypeName: LevelScript, Assembly-CSharp
+        m_MethodName: DownSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &189331713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,7 +602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &207060339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1894,7 +1906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &451064140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7199,6 +7211,14 @@ PrefabInstance:
       value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 451064139}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: downSize
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: levelText
       value: 
       objectReference: {fileID: 866474847}
@@ -7267,6 +7287,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8532489978342282302, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532489978342282302, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532489978342282302, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532489978342282302, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.12
       objectReference: {fileID: 0}
@@ -7311,6 +7343,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+--- !u!114 &7480756413265625066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+  m_PrefabInstance: {fileID: 7480756413265625065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953952571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29ecbad1e5fef04baaa7f36bbe98034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

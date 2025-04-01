@@ -32,6 +32,8 @@ public class EnemyScript : MonoBehaviour
         agent.updateUpAxis = false;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        
+
     }
 
     void Update()
@@ -84,14 +86,14 @@ public class EnemyScript : MonoBehaviour
     }
        if(other.name == "GraphicCard") {
         if(enemyType == EnemyType.CPU){
-            GameObject.Find("Prueba").GetComponent<Pruebas>().CPUdelay();
+            GameObject.Find("Prueba").GetComponent<Pruebas>().CPUdelay(1200);
             animator.Play("Death");
             Invoke("DestroyEnemy", 0.5f);
             //cambia color de la tarjeta
             GameObject.Find("GraphicCard").GetComponent<GraphicMovement>().downLife();
         }
         if(enemyType == EnemyType.GPU){
-            GameObject.Find("Prueba").GetComponent<Pruebas>().GPUdelay();
+            GameObject.Find("Prueba").GetComponent<Pruebas>().GPUdelay(1100);
             animator.Play("Death");
             Invoke("DestroyEnemy", 0.5f);
             //cambia color de la tarjeta

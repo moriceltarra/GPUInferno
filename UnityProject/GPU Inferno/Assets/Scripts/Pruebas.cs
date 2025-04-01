@@ -19,11 +19,17 @@ public class Pruebas : MonoBehaviour
     public GameObject lose;
     public GameObject graphic;
     public AnimatedCursor animatedCursor;
+    public Material invisibleMaterial; // Material transparente
     
     void Start()
     {
         Application.targetFrameRate = 1000; // Puedes poner un valor alto o -1 para ilimitado
         QualitySettings.vSyncCount = 0; // Desactiva la sincronización vertical (VSync)
+        invisibleMaterial = new Material(Shader.Find("Standard"));
+invisibleMaterial.SetFloat("_Mode", 2); // Transparent Mode
+invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sigue renderizándose
+
+
     }
 
     void Update()
@@ -57,24 +63,31 @@ public class Pruebas : MonoBehaviour
         // Crear muchos objetos en la escena (Carga en GPU)
         for (int i = 0; i < delayGPU / 100; i++)
         {
+            /*
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.transform.position = new Vector3(-1000, -1000, -1000);
             cube.AddComponent<Rigidbody>(); // Añadir física también ayuda a consumir CPU
             Destroy(cube, 0.5f);
-        }
+            */
+             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * -5;
+
+        cube.GetComponent<Renderer>().material = invisibleMaterial;  
+
+         }
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
 
-    public void CPUdelay()
+    public void CPUdelay(int delay)
     {
         Debug.Log("FPS down");
-        delayCPU += 1000;
+        delayCPU += delay;
     }
 
-    public void GPUdelay()
+    public void GPUdelay(int delay)
     {
         Debug.Log("FPS down");
-        delayGPU += 1000;
+        delayGPU += delay;
     }
 
     void pause()
@@ -136,6 +149,7 @@ public class Pruebas : MonoBehaviour
         }
 
     }
+    
     public void returnMenu(){
         SceneManager.LoadScene("InitialMenu");
 

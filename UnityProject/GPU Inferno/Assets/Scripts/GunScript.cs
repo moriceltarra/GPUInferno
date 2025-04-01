@@ -18,7 +18,7 @@ public class GunScript : MonoBehaviour
     private LineRenderer lineRenderer;
     public bool isRayGun = false;
     private float originalScale;
-    private bool isPause;
+    public bool isPause;
     public void levelUp(){
         _gunFireCD=_gunFireCD-0.004f;
     }

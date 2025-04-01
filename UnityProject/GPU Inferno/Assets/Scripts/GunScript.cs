@@ -20,7 +20,7 @@ public class GunScript : MonoBehaviour
     private float originalScale;
     private bool isPause;
     public void levelUp(){
-        _gunFireCD=_gunFireCD-0.01f;
+        _gunFireCD=_gunFireCD-0.004f;
     }
     void Start()
     {

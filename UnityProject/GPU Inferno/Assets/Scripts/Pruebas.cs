@@ -22,7 +22,7 @@ public class Pruebas : MonoBehaviour
     
     void Start()
     {
-        Application.targetFrameRate = 500; // Puedes poner un valor alto o -1 para ilimitado
+        Application.targetFrameRate = 1000; // Puedes poner un valor alto o -1 para ilimitado
         QualitySettings.vSyncCount = 0; // Desactiva la sincronización vertical (VSync)
     }
 

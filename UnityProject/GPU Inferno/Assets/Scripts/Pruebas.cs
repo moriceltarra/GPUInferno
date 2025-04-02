@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -19,15 +21,21 @@ public class Pruebas : MonoBehaviour
     public GameObject lose;
     public GameObject graphic;
     public AnimatedCursor animatedCursor;
-    public Material invisibleMaterial; // Material transparente
-    
+    public bool isGameOver = false;
+    public Material heavyMaterial; // Material pesado para los cubos
+    public bool levelSelectionMenu = false; // Variable para saber si estamos en el menú de selección de nivel
+    public void changeTime(){
+
+        if(levelSelectionMenu){
+            levelSelectionMenu = false;
+        }else{
+            levelSelectionMenu = true;
+        }
+    }
     void Start()
     {
         Application.targetFrameRate = 1000; // Puedes poner un valor alto o -1 para ilimitado
         QualitySettings.vSyncCount = 0; // Desactiva la sincronización vertical (VSync)
-        invisibleMaterial = new Material(Shader.Find("Standard"));
-invisibleMaterial.SetFloat("_Mode", 2); // Transparent Mode
-invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sigue renderizándose
 
 
     }
@@ -42,7 +50,7 @@ invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sig
                 Time.timeScale = 1f;
                 PauseMenu.SetActive(false);
                 isPause = false;
-                
+
             }
             else
             {
@@ -50,7 +58,7 @@ invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sig
                 Time.timeScale = 0f;
                 PauseMenu.SetActive(true);
                 isPause = true;
-                
+
             }
 
         }
@@ -59,35 +67,63 @@ invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sig
         {
             float x = Mathf.Sqrt(i) * Mathf.Sin(i) * Mathf.Cos(i); // Operaciones matemáticas inútiles
         }
-
-        // Crear muchos objetos en la escena (Carga en GPU)
-        for (int i = 0; i < delayGPU / 100; i++)
+        if (!isPause && !isGameOver&& !levelSelectionMenu)
         {
-            /*
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = new Vector3(-1000, -1000, -1000);
-            cube.AddComponent<Rigidbody>(); // Añadir física también ayuda a consumir CPU
-            Destroy(cube, 0.5f);
-            */
-             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * -5;
+            // Crear muchos objetos en la escena (Carga en GPU)
+            for (int i = 0; i < delayGPU / 60; i++)
+            {
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * -5;
 
-        cube.GetComponent<Renderer>().material = invisibleMaterial;  
+                // 🔥 Asigna el material con el shader pesado
+                cube.GetComponent<Renderer>().material = heavyMaterial;
+                Destroy(cube, 0.5f); // El cubo se destruye automáticamente después de 'timeToLive' segundos
 
-         }
+            }
+        }
+
+
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
 
     public void CPUdelay(int delay)
     {
-        Debug.Log("FPS down");
-        delayCPU += delay;
+        if (delay < 0)
+        {
+            if (delayCPU < Math.Abs(delay))
+            {
+                delayCPU = 0;
+            }
+            else
+            {
+                delayCPU += delay;
+            }
+        }
+        else
+        {
+            delayCPU += delay;
+        }
+
     }
 
     public void GPUdelay(int delay)
     {
-        Debug.Log("FPS down");
-        delayGPU += delay;
+        if (delay < 0)
+        {
+            if (delayGPU < Math.Abs(delay))
+            {
+                delayGPU = 0;
+            }
+            else
+            {
+                delayGPU += delay;
+            }
+        }
+        else
+        {
+            delayGPU += delay;
+        }
+
     }
 
     void pause()
@@ -98,7 +134,7 @@ invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sig
 
     void OnGUI()
     {
-        if (!isPause)
+        if (!isPause&& !levelSelectionMenu)
         {
             float fps = 1.0f / deltaTime;
 
@@ -130,10 +166,20 @@ invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sig
                 lose.SetActive(true);
                 animatedCursor.setPause(true);
                 GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(30).ToString() + " FPS", style);
-            }else{
-                 GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
+                isGameOver = true;
             }
-           
+            else
+            {
+                if (!isGameOver)
+                {
+                    GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(fps).ToString() + " FPS", style);
+                }
+                else
+                {
+                    GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(30).ToString() + " FPS", style);
+                }
+
+            }
 
 
 
@@ -149,13 +195,15 @@ invisibleMaterial.color = new Color(0, 0, 0, 0.01f); // Casi invisible, pero sig
         }
 
     }
-    
-    public void returnMenu(){
+
+    public void returnMenu()
+    {
         SceneManager.LoadScene("InitialMenu");
 
 
     }
-    public void restart(){
+    public void restart()
+    {
         SceneManager.LoadScene("Gameplay");
 
 

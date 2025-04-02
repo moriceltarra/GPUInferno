@@ -11,9 +11,12 @@ public class LevelScript : MonoBehaviour
     private int level = 0;
     private int barLevel = 0;
     public GameObject[] guns;
-    public float downSize=0.0001f;
+    public float downSize = 0.0001f;
     public Pruebas pruebas;
     public GameObject panel;
+    public GameObject[] ButtonLevels;
+    private int coinCount = 0; // Contador de monedas recogidas
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,84 +32,108 @@ public class LevelScript : MonoBehaviour
 
     public void PickCoin()
     {
-        barLevel++;
-        if (barLevel > levelImages.Length)
+       coinCount++; // Aumenta el contador de monedas recogidas
+    
+        int requiredCoins = (barLevel / 3) + 1; // Cada 3 niveles, aumentamos la cantidad requerida
+
+        if (coinCount >= requiredCoins) 
         {
-            LvlUp();
-        }
-        else
-        {
-            levelImages[barLevel - 1].enabled = true;
+            coinCount = 0; // Reinicia el contador
+            barLevel++;
+
+            if (barLevel > levelImages.Length)
+            {
+                LvlUp();
+            }
+            else
+            {
+                levelImages[barLevel - 1].enabled = true;
+            }
         }
     }
     public void LvlUp()
     {
-        
-        for (int i = 0; i < levelImages.Length; i++)
-            {
-                levelImages[i].enabled = false;
 
-            }
-            barLevel = 0;
-            level++;
-            levelText.text = "LVL " + level;
+        for (int i = 0; i < levelImages.Length; i++)
+        {
+            levelImages[i].enabled = false;
+
+        }
+        barLevel = 0;
+        level++;
+        levelText.text = "LVL " + level;
         panel.SetActive(true);
-        Time.timeScale = 0f;    
-         for (int i = 0; i < 4; i++)
-            {       
-                
-                if (guns[i].activeInHierarchy)
-                {
-                    guns[i].GetComponent<GunScript>().isPause = true;
-                }
+        for (int i = 0; i < ButtonLevels.Length; i++)
+        {
+            ButtonLevels[i].SetActive(false);
+        }
+        ButtonLevels[Random.Range(0, ButtonLevels.Length)].SetActive(true);
+        pruebas.changeTime();
+        Time.timeScale = 0f;
+        for (int i = 0; i < 4; i++)
+        {
+
+            if (guns[i].activeInHierarchy)
+            {
+                guns[i].GetComponent<GunScript>().isPause = true;
             }
+        }
+        
     }
-    public void DownSize(){
+    public void DownSize()
+    {
         transform.localScale = new Vector3(transform.localScale.x - downSize, transform.localScale.y - downSize, transform.localScale.z - downSize);
         panel.SetActive(false);
         Time.timeScale = 1f;
         for (int i = 0; i < 4; i++)
-            {       
-                
-                if (guns[i].activeInHierarchy)
-                {
-                    guns[i].GetComponent<GunScript>().isPause = false;
-                }
+        {
+
+            if (guns[i].activeInHierarchy)
+            {
+                guns[i].GetComponent<GunScript>().isPause = false;
             }
+        }
+        pruebas.changeTime();
     }
-    public void UpCD(){
+    public void UpCD()
+    {
         for (int i = 0; i < 4; i++)
-            {       
+        {
+            Debug.Log("Nivel SUBIDO " + guns[i].GetComponent<GunScript>()._gunFireCD);
+            if (guns[i].activeInHierarchy)
+            {
+                guns[i].GetComponent<GunScript>().levelUp();
                 Debug.Log("Nivel SUBIDO " + guns[i].GetComponent<GunScript>()._gunFireCD);
-                if (guns[i].activeInHierarchy)
-                {
-                    guns[i].GetComponent<GunScript>().levelUp();
-                    Debug.Log("Nivel SUBIDO " + guns[i].GetComponent<GunScript>()._gunFireCD);
-                }
             }
-            panel.SetActive(false);
-            Time.timeScale = 1f;
-            for (int i = 0; i < 4; i++)
-            {       
-                
-                if (guns[i].activeInHierarchy)
-                {
-                    guns[i].GetComponent<GunScript>().isPause = false;
-                }
-            }
-    }
-    public void UpFPS(){
-        pruebas.CPUdelay(-1000);
-        pruebas.GPUdelay(-400);
+        }
         panel.SetActive(false);
         Time.timeScale = 1f;
         for (int i = 0; i < 4; i++)
-            {       
-                
-                if (guns[i].activeInHierarchy)
-                {
-                    guns[i].GetComponent<GunScript>().isPause = false;
-                }
+        {
+
+            if (guns[i].activeInHierarchy)
+            {
+                guns[i].GetComponent<GunScript>().isPause = false;
             }
+        }
+        pruebas.changeTime();
     }
+    public void UpFPS()
+    {
+        pruebas.CPUdelay(-3000);
+        pruebas.GPUdelay(-3000);
+        panel.SetActive(false);
+        Time.timeScale = 1f;
+        for (int i = 0; i < 4; i++)
+        {
+
+            if (guns[i].activeInHierarchy)
+            {
+                guns[i].GetComponent<GunScript>().isPause = false;
+            }
+        }
+        pruebas.changeTime();
+    }
+
+
 }

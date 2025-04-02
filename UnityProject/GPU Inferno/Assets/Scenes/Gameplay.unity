@@ -306,7 +306,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 87556902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7480756413265625066}
+        m_TargetAssemblyTypeName: LevelScript, Assembly-CSharp
+        m_MethodName: UpCD
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &87556902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +548,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7480756413265625066}
         m_TargetAssemblyTypeName: LevelScript, Assembly-CSharp
-        m_MethodName: DownSize
+        m_MethodName: UpFPS
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -667,7 +679,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 207060341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7480756413265625066}
+        m_TargetAssemblyTypeName: LevelScript, Assembly-CSharp
+        m_MethodName: DownSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &207060341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5282,6 +5306,8 @@ MonoBehaviour:
   lose: {fileID: 2093123290}
   graphic: {fileID: 1953952571}
   animatedCursor: {fileID: 710847742}
+  isGameOver: 0
+  heavyMaterial: {fileID: 2100000, guid: 7c7f95510516af144802604d085323bb, type: 2}
 --- !u!4 &1628211492
 Transform:
   m_ObjectHideFlags: 0
@@ -7215,6 +7241,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 451064139}
     - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: pruebas
+      value: 
+      objectReference: {fileID: 1628211491}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: downSize
       value: 0.01
       objectReference: {fileID: 0}
@@ -7242,6 +7272,10 @@ PrefabInstance:
       propertyPath: guns.Array.data[3]
       value: 
       objectReference: {fileID: 184967312}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: ButtonLevels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: levelImages.Array.data[0]
       value: 
@@ -7278,6 +7312,14 @@ PrefabInstance:
       propertyPath: levelImages.Array.data[8]
       value: 
       objectReference: {fileID: 1687489861}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: ButtonLevels.Array.data[0]
+      value: 
+      objectReference: {fileID: 87556899}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: ButtonLevels.Array.data[1]
+      value: 
+      objectReference: {fileID: 207060338}
     - target: {fileID: 5982219609885246416, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_IsActive
       value: 0

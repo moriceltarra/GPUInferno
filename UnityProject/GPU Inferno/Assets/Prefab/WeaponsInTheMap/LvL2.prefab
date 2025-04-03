@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2023889540115544440}
   - component: {fileID: 9201832832939881780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7817343078273714796}
   - component: {fileID: 818718785171129690}
   - component: {fileID: 3685781009394267182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LvL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

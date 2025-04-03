@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             if (attempts > 0) // Solo instancia si encontró una posición válida
             {
                 int random = Random.Range(0, maxEnemyIndex + 1); // Solo selecciona enemigos desbloqueados
-                GameObject enemy = Instantiate(enemies[random], spawnPosition, Quaternion.identity);
+                GameObject enemy = Instantiate(enemies[random], spawnPosition, Quaternion.Euler(0, 0, 0));
                 enemy.GetComponent<EnemyScript>().SetWeaponToDrop(CoinDrop);
                 Debug.Log("Enemy: " + enemy.name + " " + gunLvL + " " + GetObjectIndex(enemies, enemy));
                 //Si el enemigo es el mismo que el arma que le toca dropear

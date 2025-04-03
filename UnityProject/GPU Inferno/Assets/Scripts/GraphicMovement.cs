@@ -60,12 +60,10 @@ public class GraphicMovement : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = Color.white;
     }
     public void ActivatedGun(String name){
-        Debug.Log("Arma desactivada: " + name);
         if(gunLvL>=2){
             transform.Find("GunLvL"+(gunLvL-1)).gameObject.SetActive(false);
         }
         name=name.Replace("(Clone)","");
-        Debug.Log("Arma activada: " + name);
         transform.Find("Gun"+name).gameObject.SetActive(true);
         gunLvL++;
     }

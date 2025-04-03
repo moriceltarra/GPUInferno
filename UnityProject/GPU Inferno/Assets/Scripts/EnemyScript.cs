@@ -32,7 +32,7 @@ public class EnemyScript : MonoBehaviour
         agent.updateUpAxis = false;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        
+        transform.rotation = Quaternion.Euler(0, 0, 0);
 
     }
 
@@ -50,10 +50,12 @@ public class EnemyScript : MonoBehaviour
             animator.Play("Death");
             Invoke("DestroyEnemy", 0.5f);
         }
+        /*
         if(transform.rotation.x !=0){
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            
 
         }
+        */
         
     }
     //Metodo Para asignarle El objeto que suelta si esque lo suelta

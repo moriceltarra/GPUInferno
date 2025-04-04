@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GraphicMovement : MonoBehaviour
 {
+    public GameObject powerBall; // Referencia a la bola de poder
     int gunLvL=1;
    public float moveSpeed = 5f;  // Velocidad normal
     public float slowSpeedMultiplier = 0.5f; // Reducción de velocidad al esquivar
@@ -60,6 +62,10 @@ public class GraphicMovement : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = Color.white;
     }
     public void ActivatedGun(String name){
+        if(name.Contains("PowerBall")){
+            powerBall.SetActive(true);
+            return;
+        }
         if(gunLvL>=2){
             transform.Find("GunLvL"+(gunLvL-1)).gameObject.SetActive(false);
         }

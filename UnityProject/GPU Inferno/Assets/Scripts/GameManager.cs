@@ -52,6 +52,11 @@ public class GameManager : MonoBehaviour
             maxEnemyIndex = 2;
             advices[2].SetActive(true);
         }
+        if (elapsedTime >= 120f && maxEnemyIndex < 3)
+        {
+            maxEnemyIndex = 3;
+            advices[3].SetActive(true);
+        }
     }
 
     void SpawnEnemy()

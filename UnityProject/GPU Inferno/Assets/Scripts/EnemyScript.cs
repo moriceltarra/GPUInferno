@@ -23,9 +23,10 @@ public class EnemyScript : MonoBehaviour
     private Animator animator;
     private CircleCollider2D collider;
     private AudioSource audioSource;
-    void Start() {
+    void Start()
+    {
         collider = GetComponent<CircleCollider2D>();
-        player=GameObject.Find("GraphicCard");
+        player = GameObject.Find("GraphicCard");
         target = player.transform;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -37,11 +38,11 @@ public class EnemyScript : MonoBehaviour
     }
 
     void Update()
-        {
-            if (target != null)
+    {
+        if (target != null)
         {
             agent.SetDestination(target.position);
-            agent.speed = speed;       
+            agent.speed = speed;
         }
         if (life <= 0)
         {
@@ -50,13 +51,8 @@ public class EnemyScript : MonoBehaviour
             animator.Play("Death");
             Invoke("DestroyEnemy", 0.5f);
         }
-        /*
-        if(transform.rotation.x !=0){
-            
 
-        }
-        */
-        
+
     }
     //Metodo Para asignarle El objeto que suelta si esque lo suelta
     public void SetWeaponToDrop(GameObject weapon)
@@ -68,57 +64,71 @@ public class EnemyScript : MonoBehaviour
     {
         if (WeaponToDrop != null && canDropWeapon)
         {
-            canDropWeapon=false;
-            GameObject weapon= Instantiate(WeaponToDrop, transform.position, Quaternion.identity);
-            if (!weapon.CompareTag("Coin")){
-                GameObject arrow= player.GetComponent<GraphicMovement>().getArrow();
+            canDropWeapon = false;
+            GameObject weapon = Instantiate(WeaponToDrop, transform.position, Quaternion.identity);
+            if (!weapon.CompareTag("Coin"))
+            {
+                GameObject arrow = player.GetComponent<GraphicMovement>().getArrow();
                 arrow.SetActive(true);
                 arrow.GetComponent<ArrowPointer>().ActivateArrow(weapon.transform);
             }
         }
         Destroy(gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D other) {
-       if (other.CompareTag("Bullet")) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name != "LaserRay")
+        Debug.Log("Te ha golpeado "+other.name);
+        if (other.CompareTag("Bullet"))
         {
-            Destroy(other.gameObject);
-            downLife();
-        }
-        else
-        {
-            StartCoroutine(DamageOverTime(0.2f));
-        }
-    }
-       if(other.name == "GraphicCard") {
-        if(enemyType == EnemyType.CPU){
-            GameObject.Find("Prueba").GetComponent<Pruebas>().CPUdelay(1200);
-            animator.Play("Death");
-            Invoke("DestroyEnemy", 0.5f);
-            //cambia color de la tarjeta
-            GameObject.Find("GraphicCard").GetComponent<GraphicMovement>().downLife();
-        }
-        if(enemyType == EnemyType.GPU){
-            GameObject.Find("Prueba").GetComponent<Pruebas>().GPUdelay(1100);
-            animator.Play("Death");
-            Invoke("DestroyEnemy", 0.5f);
-            //cambia color de la tarjeta
-            GameObject.Find("GraphicCard").GetComponent<GraphicMovement>().downLife();
-        }
             
-       } 
+            if (other.name.Contains("Bullet"))
+            {
+                Destroy(other.gameObject);
+                downLife();
+            }
+            else if (other.name == "PowerBall")
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    downLife();
+                }
+            }
+            else
+            {
+                StartCoroutine(DamageOverTime(0.2f));
+            }
+        }
+        if (other.name == "GraphicCard")
+        {
+            if (enemyType == EnemyType.CPU)
+            {
+                GameObject.Find("Prueba").GetComponent<Pruebas>().CPUdelay(1200);
+                animator.Play("Death");
+                Invoke("DestroyEnemy", 0.5f);
+                //cambia color de la tarjeta
+                GameObject.Find("GraphicCard").GetComponent<GraphicMovement>().downLife();
+            }
+            if (enemyType == EnemyType.GPU)
+            {
+                GameObject.Find("Prueba").GetComponent<Pruebas>().GPUdelay(1100);
+                animator.Play("Death");
+                Invoke("DestroyEnemy", 0.5f);
+                //cambia color de la tarjeta
+                GameObject.Find("GraphicCard").GetComponent<GraphicMovement>().downLife();
+            }
+
+        }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "LaserRay" )
+        if (other.name == "LaserRay")
         {
             StopCoroutine(DamageOverTime(0f));
         }
     }
     IEnumerator DamageOverTime(float interval)
     {
-        while (true) 
+        while (true)
         {
             downLife();
             audioSource.Play();

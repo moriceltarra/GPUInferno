@@ -42,7 +42,7 @@ public class Pruebas : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&& !levelSelectionMenu)
         {
             if (isPause)
             {

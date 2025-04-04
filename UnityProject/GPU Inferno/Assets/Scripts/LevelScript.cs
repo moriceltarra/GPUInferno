@@ -15,6 +15,7 @@ public class LevelScript : MonoBehaviour
     public Pruebas pruebas;
     public GameObject panel;
     public GameObject[] ButtonLevels;
+    public PowerBallScript powerBall; // Referencia al script de la bola
     private int coinCount = 0; // Contador de monedas recogidas
 
 
@@ -82,6 +83,7 @@ public class LevelScript : MonoBehaviour
     }
     public void DownSize()
     {
+        
         transform.localScale = new Vector3(transform.localScale.x - downSize, transform.localScale.y - downSize, transform.localScale.z - downSize);
         panel.SetActive(false);
         Time.timeScale = 1f;
@@ -97,6 +99,7 @@ public class LevelScript : MonoBehaviour
     }
     public void UpCD()
     {
+        powerBall.velocidadOrbita+=0.1f;
         for (int i = 0; i < 4; i++)
         {
             Debug.Log("Nivel SUBIDO " + guns[i].GetComponent<GunScript>()._gunFireCD);

@@ -3137,7 +3137,7 @@ MonoBehaviour:
   CoinDrop: {fileID: 6755496570474921330, guid: 4917990792b441948b4f51c8738d3490, type: 3}
   bottomLeft: {fileID: 2062736787}
   topRight: {fileID: 1828388395}
-  probabilityOfDrop: 14000000320000003200000032000000
+  probabilityOfDrop: 04000000320000003200000032000000
   canDrop: 0
   advices:
   - {fileID: 1526871240}
@@ -7506,6 +7506,10 @@ PrefabInstance:
       propertyPath: powerBall
       value: 
       objectReference: {fileID: 417977706}
+    - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: animatedCursor
+      value: 
+      objectReference: {fileID: 710847742}
     - target: {fileID: 5889171557396909726, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: guns.Array.size
       value: 4

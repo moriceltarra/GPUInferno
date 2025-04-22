@@ -40,19 +40,19 @@ public class GameManager : MonoBehaviour
         }
 
         // A los 60 segundos, desbloqueamos Cryptocoins
-        if (elapsedTime >= 30f && maxEnemyIndex < 1)
+        if (elapsedTime >= 0.1f && maxEnemyIndex < 1)
         {
             maxEnemyIndex = 1;
             advices[1].SetActive(true);
         }
 
         // A los 180 segundos (3 minutos), desbloqueamos Chrome Shurikens
-        if (elapsedTime >= 60f && maxEnemyIndex < 2)
+        if (elapsedTime >=  0.1f && maxEnemyIndex < 2)
         {
             maxEnemyIndex = 2;
             advices[2].SetActive(true);
         }
-        if (elapsedTime >= 120f && maxEnemyIndex < 3)
+        if (elapsedTime >=  0.1f && maxEnemyIndex < 3)
         {
             maxEnemyIndex = 3;
             advices[3].SetActive(true);
@@ -95,6 +95,9 @@ public class GameManager : MonoBehaviour
                             firstTime = false;
                             Debug.Log("Se va a dropear un arma");
                             AddWeapon(enemy);
+                            float scaleEnemy=enemy.transform.localScale.x*4f; // Cambia el tamaño del enemigo
+                            enemy.GetComponent<EnemyScript>().life=20; // Cambia la vida del enemigo
+                            enemy.transform.localScale = new Vector3(scaleEnemy, scaleEnemy, 1); // Cambia el tamaño del enemigo
                         }
                     }
                 }

@@ -19,7 +19,7 @@ public class EnemyScript : MonoBehaviour
     public float speed = 5f; // Velocidad de movimiento
     NavMeshAgent agent; // Componente NavMeshAgent
     public EnemyType enemyType;
-    [SerializeField] int life = 1;
+   public int life = 1;
     private Animator animator;
     private CircleCollider2D collider;
     private AudioSource audioSource;

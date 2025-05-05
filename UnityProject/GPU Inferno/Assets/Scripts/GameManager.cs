@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public bool canDrop = false;
     private bool firstTime = true;
     public GameObject[] advices; 
+    
 
     void Start()
     {
@@ -38,21 +39,21 @@ public class GameManager : MonoBehaviour
             CancelInvoke("SpawnEnemy");
             InvokeRepeating("SpawnEnemy", 0f, spawnIntervals[currentIntervalIndex]);
         }
-
+        
         // A los 60 segundos, desbloqueamos Cryptocoins
-        if (elapsedTime >= 0.1f && maxEnemyIndex < 1)
+        if (elapsedTime >= 100f && maxEnemyIndex < 1)
         {
             maxEnemyIndex = 1;
             advices[1].SetActive(true);
         }
 
         // A los 180 segundos (3 minutos), desbloqueamos Chrome Shurikens
-        if (elapsedTime >=  0.1f && maxEnemyIndex < 2)
+        if (elapsedTime >=  150f && maxEnemyIndex < 2)
         {
             maxEnemyIndex = 2;
             advices[2].SetActive(true);
         }
-        if (elapsedTime >=  0.1f && maxEnemyIndex < 3)
+        if (elapsedTime >=  240f && maxEnemyIndex < 3)
         {
             maxEnemyIndex = 3;
             advices[3].SetActive(true);
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
     {
         if (player != null)
         {
+            int extraLife = (int)(elapsedTime / 60f);
             Vector2 spawnPosition;
             int attempts = 10; // Número máximo de intentos para encontrar una posición válida
 
@@ -82,7 +84,10 @@ public class GameManager : MonoBehaviour
             {
                 int random = Random.Range(0, maxEnemyIndex + 1); // Solo selecciona enemigos desbloqueados
                 GameObject enemy = Instantiate(enemies[random], spawnPosition, Quaternion.Euler(0, 0, 0));
-                enemy.GetComponent<EnemyScript>().SetWeaponToDrop(CoinDrop);
+                
+                    enemy.GetComponent<EnemyScript>().SetWeaponToDrop(CoinDrop);
+                
+                enemy.GetComponent<EnemyScript>().life = enemy.GetComponent<EnemyScript>().life+extraLife;
                 Debug.Log("Enemy: " + enemy.name + " " + gunLvL + " " + GetObjectIndex(enemies, enemy));
                 //Si el enemigo es el mismo que el arma que le toca dropear
                 if (canDrop == true || firstTime == true)
@@ -96,7 +101,8 @@ public class GameManager : MonoBehaviour
                             Debug.Log("Se va a dropear un arma");
                             AddWeapon(enemy);
                             float scaleEnemy=enemy.transform.localScale.x*4f; // Cambia el tamaño del enemigo
-                            enemy.GetComponent<EnemyScript>().life=20; // Cambia la vida del enemigo
+                            
+                            enemy.GetComponent<EnemyScript>().life=20*(gunLvL+1); // Cambia la vida del enemigo
                             enemy.transform.localScale = new Vector3(scaleEnemy, scaleEnemy, 1); // Cambia el tamaño del enemigo
                         }
                     }

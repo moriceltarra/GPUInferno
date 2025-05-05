@@ -78,6 +78,11 @@ public class EnemyScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Te ha golpeado "+other.name);
+         if (other.CompareTag("Grenade"))
+            {
+                downLife();
+                
+            }
         if (other.CompareTag("Bullet"))
         {
             
@@ -86,6 +91,7 @@ public class EnemyScript : MonoBehaviour
                 Destroy(other.gameObject);
                 downLife();
             }
+            
             else if (other.name == "PowerBall")
             {
                 for (int i = 0; i < 8; i++)

@@ -7,6 +7,7 @@ TagManager:
   - Virus
   - Bullet
   - Coin
+  - Grenade
   layers:
   - Default
   - TransparentFX

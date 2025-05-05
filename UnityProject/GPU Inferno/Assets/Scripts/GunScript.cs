@@ -76,7 +76,7 @@ public class GunScript : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetMouseButton(0) && Time.time >= _lastFireTime)
+        if (Time.time >= _lastFireTime)
         {
             ShootProjectile();
         }

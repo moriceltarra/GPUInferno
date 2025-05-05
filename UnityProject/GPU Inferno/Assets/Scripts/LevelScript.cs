@@ -15,7 +15,8 @@ public class LevelScript : MonoBehaviour
     public Pruebas pruebas;
     public GameObject panel;
     public GameObject[] ButtonLevels;
-    public PowerBallScript powerBall; // Referencia al script de la bola
+    public PowerBallScript powerBallScript; // Referencia al script de la bola
+    public GameObject PowerBall;
     private int coinCount = 0; // Contador de monedas recogidas
     public AnimatedCursor animatedCursor;
 
@@ -23,22 +24,24 @@ public class LevelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         Debug.Log("Gun " + guns[1].name);
         for (int i = 0; i < levelImages.Length; i++)
         {
             levelImages[i].enabled = false;
 
         }
+       
     }
-
+    
 
     public void PickCoin()
     {
        coinCount++; // Aumenta el contador de monedas recogidas
     
-        int requiredCoins = (barLevel / 3) + 1; // Cada 3 niveles, aumentamos la cantidad requerida
+        int requiredCoins = level; // Cada nivel requiere una moneda más que el anterior
 
-        if (coinCount >= requiredCoins) 
+        if (coinCount >= requiredCoins  ) 
         {
             coinCount = 0; // Reinicia el contador
             barLevel++;
@@ -69,19 +72,21 @@ public class LevelScript : MonoBehaviour
         {
             ButtonLevels[i].SetActive(false);
         }
+        
         ButtonLevels[Random.Range(0, ButtonLevels.Length)].SetActive(true);
         pruebas.changeTime();
         Time.timeScale = 0f;
         animatedCursor.setPause(true);
         for (int i = 0; i < 4; i++)
         {
-
             if (guns[i].activeInHierarchy)
             {
                 guns[i].GetComponent<GunScript>().isPause = true;
             }
         }
-        
+        if(PowerBall.activeInHierarchy){
+            powerBallScript.lvlBallUp();
+        }
     }
     public void DownSize()
     {
@@ -102,7 +107,8 @@ public class LevelScript : MonoBehaviour
     }
     public void UpCD()
     {
-        powerBall.velocidadOrbita+=0.1f;
+        
+        
         animatedCursor.setPause(false);
         for (int i = 0; i < 4; i++)
         {

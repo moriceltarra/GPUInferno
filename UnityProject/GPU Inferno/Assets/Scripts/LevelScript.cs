@@ -19,6 +19,7 @@ public class LevelScript : MonoBehaviour
     public GameObject PowerBall;
     private int coinCount = 0; // Contador de monedas recogidas
     public AnimatedCursor animatedCursor;
+    public GraphicMovement graphicMovement;
 
 
     // Start is called before the first frame update
@@ -31,7 +32,8 @@ public class LevelScript : MonoBehaviour
             levelImages[i].enabled = false;
 
         }
-       
+       graphicMovement=GetComponent<GraphicMovement>();
+        
     }
     
 
@@ -87,6 +89,16 @@ public class LevelScript : MonoBehaviour
         if(PowerBall.activeInHierarchy){
             powerBallScript.lvlBallUp();
         }
+        //up number of grenades per second
+        
+        graphicMovement.grenadeTime -= 0.1f;
+        
+        if (graphicMovement.grenadeTime < 0.01f)
+        {
+            graphicMovement.grenadeTime = 0.007f;
+        }
+        
+        
     }
     public void DownSize()
     {

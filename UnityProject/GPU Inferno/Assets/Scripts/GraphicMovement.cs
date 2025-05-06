@@ -16,12 +16,13 @@ public class GraphicMovement : MonoBehaviour
     public Transform bottomLeft;  // Esquina inferior izquierda del cuadrado
     public Transform topRight;    // Esquina superior derecha del cuadrado
     public GameObject grenadePrefab; // Prefab de la granada
-    public float grenadeForce = 3f; // Fuerza de la granada
-    public float grenadeTime = 0.7f; // Tiempo de vida de la granada
+    public float grenadeForce = 4f; // Fuerza de la granada
+    public float grenadeTime = 2f; // Tiempo de vida de la granada
+    public bool canGrenade = false; // Bandera para controlar el lanzamiento de granadas
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(throwGranade());
+       
     }
 
     void Update()
@@ -32,7 +33,10 @@ public class GraphicMovement : MonoBehaviour
 
         // Normalizar la dirección para evitar que diagonales sean más rápidas
         movement = movement.normalized;
-
+        if(canGrenade){
+             StartCoroutine(throwGranade());
+             canGrenade = false;
+        }
     }
 
     void FixedUpdate()
@@ -84,6 +88,10 @@ public class GraphicMovement : MonoBehaviour
         if (name.Contains("PowerBall"))
         {
             powerBall.SetActive(true);
+            return;
+        }
+        if (name.Contains("Grenade")){
+            canGrenade = true;
             return;
         }
         if (gunLvL >= 2)

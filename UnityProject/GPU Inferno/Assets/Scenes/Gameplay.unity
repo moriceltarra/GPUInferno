@@ -2894,6 +2894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapons:
+  - {fileID: 1107154560231066790, guid: 4422ec3689be4a9479f936107e09a1db, type: 3}
   - {fileID: 1107154560231066790, guid: bdaf74c009291ee40b8289d603d1610e, type: 3}
   - {fileID: 8511810464342742183, guid: 84727f5bbbfffd249964c88072dfd152, type: 3}
   - {fileID: 3780899818088027405, guid: 4a86294bdf8d043438dd4b551a0274ea, type: 3}
@@ -2902,8 +2903,8 @@ MonoBehaviour:
   spawnRadius: 25
   spawnIntervals:
   - 0.4
-  - 0.2
-  - 0.06
+  - 0.3
+  - 0.3
   - 0.3
   - 0.1
   - 0.3
@@ -7334,11 +7335,11 @@ PrefabInstance:
       objectReference: {fileID: 2062736787}
     - target: {fileID: 4811089573214526968, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: grenadeTime
-      value: 0.1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4811089573214526968, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: grenadeForce
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4811089573214526968, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: grenadePrefab

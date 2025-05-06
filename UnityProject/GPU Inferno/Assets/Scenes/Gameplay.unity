@@ -2894,9 +2894,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapons:
+  - {fileID: 8511810464342742183, guid: 84727f5bbbfffd249964c88072dfd152, type: 3}
   - {fileID: 1107154560231066790, guid: 4422ec3689be4a9479f936107e09a1db, type: 3}
   - {fileID: 1107154560231066790, guid: bdaf74c009291ee40b8289d603d1610e, type: 3}
-  - {fileID: 8511810464342742183, guid: 84727f5bbbfffd249964c88072dfd152, type: 3}
   - {fileID: 3780899818088027405, guid: 4a86294bdf8d043438dd4b551a0274ea, type: 3}
   - {fileID: 8701858167831703911, guid: 941bc23cf8f04ce408094dce37e87b47, type: 3}
   player: {fileID: 1576235246}
@@ -7299,7 +7299,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 350393134370418032, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: _gunFireCD
-      value: 0.12
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1330687154853766622, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_IsActive
@@ -7335,7 +7335,7 @@ PrefabInstance:
       objectReference: {fileID: 2062736787}
     - target: {fileID: 4811089573214526968, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: grenadeTime
-      value: 0.7
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4811089573214526968, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: grenadeForce
@@ -7460,6 +7460,10 @@ PrefabInstance:
     - target: {fileID: 8227482260679087228, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461522616961360338, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
+      propertyPath: _gunFireCD
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8532489978342282302, guid: 725bf35dfd0beb346af7e018f2c45f76, type: 3}
       propertyPath: m_LocalScale.x

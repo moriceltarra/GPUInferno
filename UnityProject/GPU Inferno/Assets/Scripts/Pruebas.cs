@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -24,6 +22,9 @@ public class Pruebas : MonoBehaviour
     public bool isGameOver = false;
     public Material heavyMaterial; // Material pesado para los cubos
     public bool levelSelectionMenu = false; // Variable para saber si estamos en el menú de selección de nivel
+    public TextMeshProUGUI cronnoText; // Asigna un Text en el inspector
+    private float time;
+
     public void changeTime(){
 
         if(levelSelectionMenu){
@@ -50,18 +51,23 @@ public class Pruebas : MonoBehaviour
                 Time.timeScale = 1f;
                 PauseMenu.SetActive(false);
                 isPause = false;
+                cronnoText.gameObject.SetActive(true);
 
             }
             else
             {
+                
                 animatedCursor.setPause(true);
                 Time.timeScale = 0f;
                 PauseMenu.SetActive(true);
                 isPause = true;
+                cronnoText.gameObject.SetActive(false);
 
             }
 
         }
+        time += Time.deltaTime;
+        cronnoText.text = FormTime(time);
         // Debug.Log("Tarjeta gráfica: " + SystemInfo.graphicsDeviceName);
         for (int i = 0; i < delayCPU; i++)
         {
@@ -84,6 +90,13 @@ public class Pruebas : MonoBehaviour
 
 
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+    }
+    string FormTime(float t)
+    {
+        int minutos = Mathf.FloorToInt(t / 60);
+        int segundos = Mathf.FloorToInt(t % 60);
+        int milisegundos = Mathf.FloorToInt((t * 1000) % 1000);
+        return $"{minutos:00}:{segundos:00}:{milisegundos:000}";
     }
 
     public void CPUdelay(int delay)

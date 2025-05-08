@@ -2902,9 +2902,9 @@ MonoBehaviour:
   player: {fileID: 1576235246}
   spawnRadius: 25
   spawnIntervals:
+  - 0.3
+  - 0.3
   - 0.1
-  - 0.3
-  - 0.3
   - 0.3
   - 0.1
   - 0.07

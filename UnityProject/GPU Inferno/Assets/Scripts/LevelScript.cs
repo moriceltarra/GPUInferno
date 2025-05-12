@@ -91,12 +91,9 @@ public class LevelScript : MonoBehaviour
         }
         //up number of grenades per second
         
-        graphicMovement.grenadeTime -= 0.1f;
+        graphicMovement.grenadeToThrow += 1;
         
-        if (graphicMovement.grenadeTime < 0.01f)
-        {
-            graphicMovement.grenadeTime = 0.007f;
-        }
+        
         
         
     }

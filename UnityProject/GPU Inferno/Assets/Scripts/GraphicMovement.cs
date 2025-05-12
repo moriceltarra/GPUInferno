@@ -19,6 +19,7 @@ public class GraphicMovement : MonoBehaviour
     public float grenadeForce = 4f; // Fuerza de la granada
     public float grenadeTime = 2f; // Tiempo de vida de la granada
     public bool canGrenade = false; // Bandera para controlar el lanzamiento de granadas
+    public int grenadeToThrow = 1; // Contador de granadas lanzadas
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -64,12 +65,15 @@ public class GraphicMovement : MonoBehaviour
     {
         while (true)
         {
-            // Instanciar la granada
-            GameObject grenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
+            for(int i = 0; i < grenadeToThrow; i++)
+            {
+                GameObject grenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
             
-            Vector2 dir = UnityEngine.Random.insideUnitCircle.normalized;
+                Vector2 dir = UnityEngine.Random.insideUnitCircle.normalized;
 
-            grenade.GetComponent<GrenadeScript>().velocity = dir * 50f;
+                grenade.GetComponent<GrenadeScript>().velocity = dir * 50f;
+
+            }
 
             yield return new WaitForSeconds(grenadeTime);
         }

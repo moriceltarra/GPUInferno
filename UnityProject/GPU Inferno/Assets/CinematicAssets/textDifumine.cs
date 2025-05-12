@@ -12,7 +12,12 @@ public class textDifumine : MonoBehaviour
     {
         StartCoroutine(FadeInText());
     }
-
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Gameplay");
+        }
+    }
     IEnumerator FadeInText()
     {
         Color color = text.color;

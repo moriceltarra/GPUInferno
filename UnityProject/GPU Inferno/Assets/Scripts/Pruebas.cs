@@ -12,7 +12,6 @@ public class Pruebas : MonoBehaviour
     public int delayCPU = 0;
     public int delayGPU = 0;
     public int sumDelay = 6000;
-    bool firstTime = true;
     public Font customFont; // Asigna la fuente desde el Inspector
     bool isPause = false;
     public GameObject PauseMenu;
@@ -35,7 +34,6 @@ public class Pruebas : MonoBehaviour
     }
     void Start()
     {
-        Application.targetFrameRate = 1000; // Puedes poner un valor alto o -1 para ilimitado
         QualitySettings.vSyncCount = 0; // Desactiva la sincronización vertical (VSync)
 
 
@@ -115,6 +113,7 @@ public class Pruebas : MonoBehaviour
         else
         {
             delayCPU += delay;
+            delayGPU += 350;
         }
 
     }
@@ -164,12 +163,9 @@ public class Pruebas : MonoBehaviour
             // Mezcla de colores de verde a rojo
             style.normal.textColor = Color.Lerp(Color.red, Color.green, t);
             light2D.color = Color.Lerp(Color.red, Color.white, t2);
-            if (fps > 30)
-            {
-                firstTime = false;
-            }
+            
 
-            if (fps < 30 && !firstTime)
+            if (fps < 30 && time>1f )
             {
                 // Mostrar mensaje de derrota en rojo
                 GUIStyle loseStyle = new GUIStyle(style);
@@ -180,6 +176,8 @@ public class Pruebas : MonoBehaviour
                 animatedCursor.setPause(true);
                 GUI.Label(new Rect(10, 10, 300, 50), Mathf.Ceil(30).ToString() + " FPS", style);
                 isGameOver = true;
+                cronnoText.gameObject.SetActive(false);
+
             }
             else
             {

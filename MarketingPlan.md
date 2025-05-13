@@ -30,7 +30,7 @@ Direct connection promo:
 
 ### 2025-05-19 Launching Trailer
 
-New trailer. Ending with dates.
+Publish new trailer ending with dates.
 
 ### 2025-05-21 Launching Day
 

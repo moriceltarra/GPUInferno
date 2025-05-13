@@ -32,6 +32,11 @@ Direct connection promo:
 
 Publish new trailer ending with dates.
 
+### Promotional keys
+
+* Respond to all the people who spoke to me with a key
+* Research indies streamers
+
 ### 2025-05-21 Launching Day
 
 * Press the button.
